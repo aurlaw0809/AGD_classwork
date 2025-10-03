@@ -1,6 +1,6 @@
-#Highgate AGD exercises 2025-2027
+# Highgate AGD exercises 2025-2027
 
-##Exercise include
+## Exercise include
 - Test driven development(TDD)
 - Comprehensions
 - Object orientated programming
