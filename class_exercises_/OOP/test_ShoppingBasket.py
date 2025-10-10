@@ -30,13 +30,16 @@ def test_shopping_basket_setup(setup_items_and_basket):
 def test_add_more_than_stock(setup_items_and_basket):
     """ Test adding more items than exist in stock"""
     basket, tomatoSoup, *other = setup_items_and_basket
-    # Raise an error if you try to add more items than exist in stock.
-    # TODO - maybe this should be to add only what exists in stock
-    with pytest.raises(ValueError):
-        basket.addItem(tomatoSoup, 20)
+    # Should add remaining stock of item to basket if requested amount > available stock
+    basket.addItem(tomatoSoup, 20)
+    assert tomatoSoup.stock == 0
+    #with pytest.raises(ValueError):
+        #basket.addItem(tomatoSoup, 20)
 
-def test_add_item():
-    assert False
+def test_add_item(setup_items_and_basket):
+    """test adding and item and invalid inputs"""
+    basket, tomatoSoup, *other = setup_items_and_basket
+    assert basket.addItem("Tomato Soup", -2) is TypeError #leaving off of here
 
 
 def test_remove_item():
@@ -47,5 +50,5 @@ def test_update_item():
     assert False
 
 
-def test_reset():
+def test_reset(setup_items_and_basket):
     assert False
