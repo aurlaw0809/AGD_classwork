@@ -1,4 +1,4 @@
-from Item import Item
+from class_exercises_.OOP.Item import Item
 
 
 class ShoppingBasket:

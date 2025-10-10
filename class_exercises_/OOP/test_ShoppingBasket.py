@@ -1,7 +1,7 @@
 
 import pytest
-from class_exercises_.OOP import Item
-from class_exercises_.OOP import ShoppingBasket
+from class_exercises_.OOP.Item import Item
+from class_exercises_.OOP.ShoppingBasket import ShoppingBasket
 
 @pytest.fixture
 def setup_items_and_basket():
