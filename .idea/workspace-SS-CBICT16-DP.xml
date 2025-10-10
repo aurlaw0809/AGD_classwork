@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="db96d272-da05-4b93-a091-a85506b1f06f" name="Changes" comment="poly...gone...?" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;aurlaw0809&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/aurlaw0809/AGD_classwork.git",
+    "accountId": "80f7c58b-62ca-49ea-b6fa-8a3c2ec32e7d"
+  }
+}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="32azA6mQ6VUHGyhmT9aBSFU1MfR" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python tests.Python tests for test_calc_grade_min_boundary.test_calc_grade_min_boundary.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_code_message.test_boundaries.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_code_message.test_erroneous.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_code_message.test_normal.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_code_message.test_normal_chars.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_code_mssg.test_code_mssg.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_grade_boundaries.test_calc_grade.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_grade_boundaries.test_calc_grade_invalid.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_grade_boundaries.test_grade_boundaries.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_grade_boundaries.test_min_grade_boundaries.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests in test_grade_boundaries.py.executor&quot;: &quot;Run&quot;,
+    &quot;Python.DogOOP.executor&quot;: &quot;Run&quot;,
+    &quot;Python.input_validator.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/aurlaw0809/OneDrive - Highgate School/Y12 computing/pycharm/AGD classwork&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\aurlaw0809\OneDrive - Highgate School\Y12 computing\pycharm\AGD classwork\class_exercises_\tdd" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\aurlaw0809\OneDrive - Highgate School\Y12 computing\pycharm\AGD classwork\class_exercises_\tdd" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.DogOOP">
+    <configuration name="DogOOP" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="AGD classwork" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/class_exercises_/OOP" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/class_exercises_/OOP/DogOOP.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_code_message.test_boundaries" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="AGD classwork" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/class_exercises_/tdd" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_code_message.test_boundaries&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_code_message.test_erroneous" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="AGD classwork" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/class_exercises_/tdd" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_code_message.test_erroneous&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_code_message.test_normal" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="AGD classwork" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/class_exercises_/tdd" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_code_message.test_normal&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_code_message.test_normal_chars" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="AGD classwork" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/class_exercises_/tdd" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_code_message.test_normal_chars&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.DogOOP" />
+        <item itemvalue="Python tests.Python tests for test_code_message.test_erroneous" />
+        <item itemvalue="Python tests.Python tests for test_code_message.test_boundaries" />
+        <item itemvalue="Python tests.Python tests for test_code_message.test_normal_chars" />
+        <item itemvalue="Python tests.Python tests for test_code_message.test_normal" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-PY-243.25659.43" />
+        <option value="bundled-python-sdk-181015f7ab06-4df51de95216-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-243.25659.43" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="db96d272-da05-4b93-a091-a85506b1f06f" name="Changes" comment="" />
+      <created>1757673325220</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1757673325220</updated>
+      <workItem from="1757673326104" duration="2041000" />
+      <workItem from="1758271392640" duration="3082000" />
+      <workItem from="1758551267689" duration="2013000" />
+      <workItem from="1758881689894" duration="23000" />
+      <workItem from="1758881714162" duration="3120000" />
+      <workItem from="1759243420355" duration="507000" />
+      <workItem from="1759481263297" duration="2528000" />
+      <workItem from="1759760176265" duration="157000" />
+      <workItem from="1759760335766" duration="2496000" />
+    </task>
+    <task id="LOCAL-00001" summary="oop">
+      <option name="closed" value="true" />
+      <created>1759482489685</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1759482489685</updated>
+    </task>
+    <task id="LOCAL-00002" summary="dorg :P">
+      <option name="closed" value="true" />
+      <created>1759761563677</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1759761563677</updated>
+    </task>
+    <task id="LOCAL-00003" summary="poly...gone...?">
+      <option name="closed" value="true" />
+      <created>1759762829612</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1759762829612</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="oop" />
+    <MESSAGE value="dorg :P" />
+    <MESSAGE value="poly...gone...?" />
+    <option name="LAST_COMMIT_MESSAGE" value="poly...gone...?" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main.py</url>
+          <line>8</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/AGD_classwork$input_validator.coverage" NAME="input_validator Coverage Results" MODIFIED="1757674293686" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/class_exercises_/tdd" />
+    <SUITE FILE_PATH="coverage/AGD_classwork$DogOOP.coverage" NAME="DogOOP Coverage Results" MODIFIED="1759762806765" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/class_exercises_/OOP" />
+    <SUITE FILE_PATH="coverage/AGD_classwork$.coverage" NAME=" Coverage Results" MODIFIED="1759243677755" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/class_exercises_/tdd" />
+  </component>
+</project>
