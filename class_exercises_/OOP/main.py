@@ -2,11 +2,11 @@
 from Item import Item
 from ShoppingBasket import ShoppingBasket
 
-tomatoSoup = Item("Tomato Soup","200mL can", 0.70)
-spaghetti = Item("Spaghetti","500g pack", 1.10)
-blackOlives = Item("Black Olives Jar","200g Jar", 2.10)
-mozarella = Item("Mozarella","100g", 1.50)
-gratedCheese = Item("Grated Cheese","100g",2.20)
+tomatoSoup = Item("Tomato Soup","200mL can", 0.70, 20)
+spaghetti = Item("Spaghetti","500g pack", 1.10, 20)
+blackOlives = Item("Black Olives Jar","200g Jar", 2.10, 20)
+mozarella = Item("Mozarella","100g", 1.50, 20)
+gratedCheese = Item("Grated Cheese","100g",2.20, 20)
 
 myBasket = ShoppingBasket()
 

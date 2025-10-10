@@ -17,9 +17,9 @@ class ShoppingBasket:
                 self.items[item] = quantity
             item.stock -= quantity
         if item.stock < quantity:
-            print("Error, not enough stock")
+            raise ValueError("Error, not enough stock")
         else:
-            print("Invalid operation - Quantity must be a positive number!")
+            raise TypeError("Invalid operation - Quantity must be a positive number!")
 
     # A method to remove an item from the shopping basket (or reduce its quantity)
     def removeItem(self, item, quantity=0):

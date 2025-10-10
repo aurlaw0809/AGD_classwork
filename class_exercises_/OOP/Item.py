@@ -1,6 +1,6 @@
 class Item:
     # Constructor
-    def __init__(self,name,description,price,stock: int = 100):
+    def __init__(self,name,description,price,stock):
         self.name = name
         self.description = description
         self.price = price
