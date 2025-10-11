@@ -10,7 +10,7 @@ def setup_items_and_basket():
     spaghetti = Item("Spaghetti", "500g pack", 1.10, 20)
     blackOlives = Item("Black Olives Jar", "200g Jar", 2.10, 20)
     mozarella = Item("Mozarella", "100g", 1.50, 20)
-    gratedCheese = Item("Grated Cheese", "100g", 2.20, 29)
+    gratedCheese = Item("Grated Cheese", "100g", 2.20, 20)
 
     # Create basket and add items
     basket = ShoppingBasket()
@@ -70,9 +70,42 @@ def test_remove_item(setup_items_and_basket):
     basket.removeItem(blackOlives, 0)
     assert blackOlives.stock == 20
 
-def test_update_item():
+def test_update_item(setup_items_and_basket):
     """test updating item and invalid inputs"""
+    basket, tomatoSoup, spaghetti, blackOlives, mozarella, *other = setup_items_and_basket
 
+    #tests non existent items
+    with pytest.raises(TypeError):
+        basket.updateItem(spaghetti, -2)
+    with pytest.raises(Warning):
+        basket.updateItem(spaghetti, 0)
+    with pytest.raises(TypeError):
+        basket.updateItem(spaghetti, 2.5)
+    with pytest.raises(TypeError):
+        basket.updateItem(spaghetti, 'howdy')
+
+    #tests items they want to add
+    basket.addItem(spaghetti, 3)
+    assert spaghetti.stock == 17
+
+    #tests increasing amount of item
+    basket.updateItem(tomatoSoup, 2)
+    assert tomatoSoup.stock == 18
+
+    #tests decreasing amount of item
+    basket.updateItem(mozarella, 1)
+    assert mozarella.stock == 19
+
+    #tests removing item entirely
+    basket.updateItem(blackOlives, 0)
+    assert blackOlives.stock == 20
+    assert blackOlives not in basket.items
+
+    #tests invalid existing item errors
+    with pytest.raises(TypeError):
+        basket.updateItem(tomatoSoup, 'howdy')
+    with pytest.raises(TypeError):
+        basket.updateItem(tomatoSoup, 2.5)
 
 
 def test_reset(setup_items_and_basket):
