@@ -54,11 +54,9 @@ def test_add_item(setup_items_and_basket):
 
 def test_remove_item(setup_items_and_basket):
     """test removing and item and invalid inputs"""
-    basket, tomatoSoup, spaghetti, blackOlives, *other = setup_items_and_basket
+    basket, tomatoSoup, spaghetti, blackOlives, gratedCheese, *other = setup_items_and_basket
 
     # tests invalid inputs of wrong data type
-    with pytest.raises(TypeError):
-        basket.removeItem(spaghetti, -2)
     with pytest.raises(TypeError):
         basket.removeItem(tomatoSoup, 'howdy')
     with pytest.raises(TypeError):
@@ -69,6 +67,16 @@ def test_remove_item(setup_items_and_basket):
     assert tomatoSoup.stock == 20
     basket.removeItem(blackOlives, 0)
     assert blackOlives.stock == 20
+
+    #tests trying to remove non existent items
+    basket.removeItem(gratedCheese, -1)
+    assert gratedCheese.stock == 20
+    with pytest.raises(TypeError):
+        basket.removeItem(gratedCheese, 0)
+        assert gratedCheese.stock == 20
+    with pytest.raises(TypeError):
+        basket.removeItem(gratedCheese, 1)
+        assert gratedCheese.stock == 20
 
 def test_update_item(setup_items_and_basket):
     """test updating item and invalid inputs"""
@@ -84,7 +92,7 @@ def test_update_item(setup_items_and_basket):
     with pytest.raises(TypeError):
         basket.updateItem(spaghetti, 'howdy')
 
-    #tests items they want to add
+    #tests items they want to add when not there
     basket.addItem(spaghetti, 3)
     assert spaghetti.stock == 17
 
@@ -101,6 +109,10 @@ def test_update_item(setup_items_and_basket):
     assert blackOlives.stock == 20
     assert blackOlives not in basket.items
 
+    basket.updateItem(tomatoSoup, -2)
+    assert tomatoSoup.stock == 20
+    assert tomatoSoup not in basket.items
+
     #tests invalid existing item errors
     with pytest.raises(TypeError):
         basket.updateItem(tomatoSoup, 'howdy')
@@ -109,6 +121,7 @@ def test_update_item(setup_items_and_basket):
 
 
 def test_reset(setup_items_and_basket):
+    """test resetting basket"""
     basket, tomatoSoup, spaghetti, blackOlives, mozarella, gratedCheese = setup_items_and_basket
 
     #asserts stocks reset and no items left in basket after reset
