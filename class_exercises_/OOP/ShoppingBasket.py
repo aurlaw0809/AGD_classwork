@@ -29,21 +29,24 @@ class ShoppingBasket:
 
     # A method to remove an item from the shopping basket (or reduce its quantity)
     def removeItem(self, item, quantity=0):
-        if quantity <= 0 and item in self.items:
-            # Remove the item entirely
-            item.stock += self.items[item]
-            self.items.pop(item, None)
-        elif quantity > 0 and quantity.is_integer() and item in self.items:
-            if quantity < self.items[item]:
-                # Reduce the required quantity for this item
-                self.items[item] -= quantity
-                item.stock += quantity
-            else:
-                # Remove the item
+        if item in self.items:
+            if quantity <= 0 and quantity.is_integer():
+                # Remove the item entirely if 0 or negative entered
+                item.stock += self.items[item]
                 self.items.pop(item, None)
-                item.stock += quantity
+            elif quantity > 0  and quantity.is_integer():
+                if quantity < self.items[item]:
+                    # Reduce the required quantity for this item
+                    self.items[item] -= quantity
+                    item.stock += quantity
+                else:
+                    # Remove the item entirely if number want to remove > number in basket
+                    item.stock += self.items[item]
+                    self.items.pop(item, None)
+            else:
+                raise TypeError("Invalid operation - Quantity must be a positive number!")
         else:
-            raise TypeError("Invalid operation - Quantity must be a positive number!")
+            raise Warning("Invalid operation - cannot remove non-existent item, no changes made to basket")
 
     # A method to update the quantity of an item from the shopping basket
     def updateItem(self, item, quantity):

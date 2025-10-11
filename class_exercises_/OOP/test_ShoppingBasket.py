@@ -68,13 +68,18 @@ def test_remove_item(setup_items_and_basket):
     basket.removeItem(blackOlives, 0)
     assert blackOlives.stock == 20
 
+    #tests trying to remove more of item than in basket
+    basket.addItem(blackOlives, 1)
+    basket.removeItem(blackOlives, 10)
+    assert blackOlives.stock == 20
+
     #tests trying to remove non existent items
-    basket.removeItem(gratedCheese, -1)
+    basket.removeItem(gratedCheese, 0)
     assert gratedCheese.stock == 20
-    with pytest.raises(TypeError):
+    with pytest.raises(Warning):
         basket.removeItem(gratedCheese, 0)
         assert gratedCheese.stock == 20
-    with pytest.raises(TypeError):
+    with pytest.raises(Warning):
         basket.removeItem(gratedCheese, 1)
         assert gratedCheese.stock == 20
 
