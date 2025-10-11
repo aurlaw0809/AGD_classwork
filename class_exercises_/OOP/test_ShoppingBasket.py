@@ -109,4 +109,10 @@ def test_update_item(setup_items_and_basket):
 
 
 def test_reset(setup_items_and_basket):
-    assert False
+    basket, tomatoSoup, spaghetti, blackOlives, mozarella, gratedCheese = setup_items_and_basket
+
+    #asserts stocks reset and no items left in basket after reset
+    basket.reset()
+    assert tomatoSoup.stock == 20
+    assert gratedCheese not in basket.items
+    assert tomatoSoup not in basket.items

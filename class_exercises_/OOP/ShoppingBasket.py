@@ -89,4 +89,5 @@ class ShoppingBasket:
     def reset(self):
         for item in self.items:
             item.stock += self.items[item]
-            self.items.pop(item, None)
+        self.items = {}
+
