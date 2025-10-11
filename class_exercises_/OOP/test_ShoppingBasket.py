@@ -30,24 +30,49 @@ def test_shopping_basket_setup(setup_items_and_basket):
 def test_add_more_than_stock(setup_items_and_basket):
     """ Test adding more items than exist in stock"""
     basket, tomatoSoup, *other = setup_items_and_basket
+
     # Should add remaining stock of item to basket if requested amount > available stock
     basket.addItem(tomatoSoup, 20)
     assert tomatoSoup.stock == 0
-    #with pytest.raises(ValueError):
-        #basket.addItem(tomatoSoup, 20)
 
 def test_add_item(setup_items_and_basket):
     """test adding and item and invalid inputs"""
-    basket, tomatoSoup, *other = setup_items_and_basket
-    assert basket.addItem("Tomato Soup", -2) is TypeError #leaving off of here
+    basket, tomatoSoup, spaghetti, *other = setup_items_and_basket
 
+    #tests invalid inputs of wrong data type
+    with pytest.raises(TypeError):
+        basket.addItem(spaghetti, -2)
+    with pytest.raises(TypeError):
+        basket.addItem(tomatoSoup, 'howdy')
+    with pytest.raises(TypeError):
+        basket.addItem(tomatoSoup, 2.5)
 
-def test_remove_item():
-    assert False
+    #tests boundary data of 0
+    with pytest.raises(Warning):
+        basket.addItem(tomatoSoup, 0)
+        assert basket.items[tomatoSoup] == 10
 
+def test_remove_item(setup_items_and_basket):
+    """test removing and item and invalid inputs"""
+    basket, tomatoSoup, spaghetti, blackOlives, *other = setup_items_and_basket
+
+    # tests invalid inputs of wrong data type
+    with pytest.raises(TypeError):
+        basket.removeItem(spaghetti, -2)
+    with pytest.raises(TypeError):
+        basket.removeItem(tomatoSoup, 'howdy')
+    with pytest.raises(TypeError):
+        basket.removeItem(tomatoSoup, 2.5)
+
+    #tests if negative or 0 is entered, all of item is removed from basket
+    basket.removeItem(tomatoSoup, -2)
+    assert tomatoSoup.stock == 20
+    basket.removeItem(blackOlives, 0)
+    assert blackOlives.stock == 20
 
 def test_update_item():
-    assert False
+    """test updating item and invalid inputs"""
+
 
 
 def test_reset(setup_items_and_basket):

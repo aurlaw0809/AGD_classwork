@@ -1,3 +1,5 @@
+import warnings
+
 from class_exercises_.OOP.Item import Item
 
 
@@ -9,27 +11,29 @@ class ShoppingBasket:
 
     # A method to add an item to the shopping basket
     def addItem(self, item, quantity=1):
-        if 0 < quantity <= item.stock:
+        if 0 < quantity <= item.stock and quantity.is_integer():
             # Check if the item is already in the shopping basket
             if item in self.items:
                 self.items[item] += quantity
             else:
                 self.items[item] = quantity
             item.stock -= quantity
-        elif item.stock < quantity:
+        elif 0 < item.stock < quantity and quantity.is_integer():
             #adds all of remaining stock of item if quantity requested is over available stock
             self.items[item] += item.stock
             item.stock -= item.stock
+        elif quantity == 0:
+            raise Warning("Invalid operation - no changes made to basket")
         else:
             raise TypeError("Invalid operation - Quantity must be a positive number!")
 
     # A method to remove an item from the shopping basket (or reduce its quantity)
     def removeItem(self, item, quantity=0):
-        if quantity <= 0:
+        if quantity <= 0 and item in self.items:
             # Remove the item
+            item.stock += self.items[item]
             self.items.pop(item, None)
-            item.stock += quantity #testing if i need this TODO
-        else:
+        elif quantity > 0 and quantity.is_integer():
             if item in self.items:
                 if quantity < self.items[item]:
                     # Reduce the required quantity for this item
@@ -39,6 +43,8 @@ class ShoppingBasket:
                     # Remove the item
                     self.items.pop(item, None)
                     item.stock += quantity
+        else:
+            raise TypeError("Invalid operation - Quantity must be a positive number!")
 
     # A method to update the quantity of an item from the shopping basket
     def updateItem(self, item, quantity):
