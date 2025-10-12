@@ -39,7 +39,14 @@ def test_add_item(setup_items_and_basket):
     """test adding and item and invalid inputs"""
     basket, tomatoSoup, spaghetti, *other = setup_items_and_basket
 
-    #tests invalid inputs of wrong data type
+    #normal test for expected data
+    basket.addItem(tomatoSoup, 1)
+    assert tomatoSoup.stock == 9
+
+def test_add_item_erroneous(setup_items_and_basket):
+    """tests invalid inputs of wrong data type"""
+    basket, tomatoSoup, spaghetti, *other = setup_items_and_basket
+
     with pytest.raises(TypeError):
         basket.addItem(spaghetti, -2)
     with pytest.raises(TypeError):
@@ -47,13 +54,24 @@ def test_add_item(setup_items_and_basket):
     with pytest.raises(TypeError):
         basket.addItem(tomatoSoup, 2.5)
 
-    #tests boundary data of 0
+def test_add_item_boundary(setup_items_and_basket):
+    """tests boundary data for adding (0)"""
+    basket, tomatoSoup, spaghetti, *other = setup_items_and_basket
+
     with pytest.raises(Warning):
         basket.addItem(tomatoSoup, 0)
         assert basket.items[tomatoSoup] == 10
 
 def test_remove_item(setup_items_and_basket):
-    """test removing and item and invalid inputs"""
+    """test removing and item with expected data"""
+    basket, tomatoSoup, spaghetti, blackOlives, gratedCheese, *other = setup_items_and_basket
+
+    basket.removeItem(blackOlives, 1)
+    assert blackOlives.stock == 20
+    assert blackOlives not in basket.items
+
+def test_remove_item_erroneous(setup_items_and_basket):
+    """test removing and item with incorrect data type"""
     basket, tomatoSoup, spaghetti, blackOlives, gratedCheese, *other = setup_items_and_basket
 
     # tests invalid inputs of wrong data type
@@ -62,18 +80,27 @@ def test_remove_item(setup_items_and_basket):
     with pytest.raises(TypeError):
         basket.removeItem(tomatoSoup, 2.5)
 
-    #tests if negative or 0 is entered, all of item is removed from basket
+def test_remove_items_all(setup_items_and_basket):
+    """tests if negative or 0 is entered, all of item is removed from basket"""
+    basket, tomatoSoup, spaghetti, blackOlives, gratedCheese, *other = setup_items_and_basket
+
     basket.removeItem(tomatoSoup, -2)
     assert tomatoSoup.stock == 20
     basket.removeItem(blackOlives, 0)
     assert blackOlives.stock == 20
 
-    #tests trying to remove more of item than in basket
+def test_remove_item_more_than_there(setup_items_and_basket):
+    """tests trying to remove more of item than in basket"""
+    basket, tomatoSoup, spaghetti, blackOlives, gratedCheese, *other = setup_items_and_basket
+
     basket.addItem(blackOlives, 1)
     basket.removeItem(blackOlives, 10)
     assert blackOlives.stock == 20
 
-    #tests trying to remove non existent items
+def test_remove_item_not_there(setup_items_and_basket):
+    """tests trying to remove non-existent items"""
+    basket, tomatoSoup, spaghetti, blackOlives, gratedCheese, *other = setup_items_and_basket
+
     basket.removeItem(gratedCheese, 0)
     assert gratedCheese.stock == 20
     with pytest.raises(Warning):
@@ -87,7 +114,21 @@ def test_update_item(setup_items_and_basket):
     """test updating item and invalid inputs"""
     basket, tomatoSoup, spaghetti, blackOlives, mozarella, *other = setup_items_and_basket
 
-    #tests non existent items
+    basket.updateItem(tomatoSoup, 1)
+    assert tomatoSoup.stock == 19
+    assert basket.items[tomatoSoup] == 1
+
+def test_update_item_not_there_normal(setup_items_and_basket):
+    """test updating items not there with normal data"""
+    basket, tomatoSoup, spaghetti, blackOlives, mozarella, *other = setup_items_and_basket
+
+    basket.addItem(spaghetti, 3)
+    assert spaghetti.stock == 17
+
+def test_update_item_not_there_erroneous(setup_items_and_basket):
+    """test updating items not there with erroneous and normal data"""
+    basket, tomatoSoup, spaghetti, blackOlives, mozarella, *other = setup_items_and_basket
+
     with pytest.raises(TypeError):
         basket.updateItem(spaghetti, -2)
     with pytest.raises(Warning):
@@ -97,19 +138,19 @@ def test_update_item(setup_items_and_basket):
     with pytest.raises(TypeError):
         basket.updateItem(spaghetti, 'howdy')
 
-    #tests items they want to add when not there
-    basket.addItem(spaghetti, 3)
-    assert spaghetti.stock == 17
+def test_update_item_normal(setup_items_and_basket):
+    """test updating items with normal data"""
+    basket, tomatoSoup, spaghetti, blackOlives, mozarella, *other = setup_items_and_basket
 
-    #tests increasing amount of item
+    """tests increasing amount of item"""
     basket.updateItem(tomatoSoup, 2)
     assert tomatoSoup.stock == 18
 
-    #tests decreasing amount of item
+    """tests decreasing amount of item"""
     basket.updateItem(mozarella, 1)
     assert mozarella.stock == 19
 
-    #tests removing item entirely
+    """tests removing item entirely"""
     basket.updateItem(blackOlives, 0)
     assert blackOlives.stock == 20
     assert blackOlives not in basket.items
@@ -118,7 +159,10 @@ def test_update_item(setup_items_and_basket):
     assert tomatoSoup.stock == 20
     assert tomatoSoup not in basket.items
 
-    #tests invalid existing item errors
+def test_update_item_erroneous(setup_items_and_basket):
+    """test updating items with erroneous data"""
+    basket, tomatoSoup, spaghetti, blackOlives, mozarella, *other = setup_items_and_basket
+
     with pytest.raises(TypeError):
         basket.updateItem(tomatoSoup, 'howdy')
     with pytest.raises(TypeError):
@@ -126,10 +170,9 @@ def test_update_item(setup_items_and_basket):
 
 
 def test_reset(setup_items_and_basket):
-    """test resetting basket"""
+    """test resetting basket and making sure it's empty afterwards"""
     basket, tomatoSoup, spaghetti, blackOlives, mozarella, gratedCheese = setup_items_and_basket
 
-    #asserts stocks reset and no items left in basket after reset
     basket.reset()
     assert tomatoSoup.stock == 20
     assert gratedCheese not in basket.items
