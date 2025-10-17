@@ -66,7 +66,8 @@ class PC(Character):
 
     @classmethod
     def generate_player_character(cls, name):
-        return cls(name, skill = dice_sum(), stamina = dice_sum(), luck = dice_sum())
+        return cls(name, skill = dice_sum(2), stamina = dice_sum(2), luck = dice_sum(2))
 
-dragon = NPC("Dragoneeeeeeeeeee", 10, 22)
-jackie = PC("Jackie", 15, 25)
+dragon = Character("Dragoneeeeeeeeeee", 10, 22)
+jackie = Character("Jackie", 15, 25)
+zippa = PC.generate_player_character("Zippa")
