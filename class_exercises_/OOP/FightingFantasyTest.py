@@ -1,14 +1,14 @@
 import pytest
 import random
-from FightingFantasy import Character, PC
+from .FightingFantasy import Character, PC
 
 
 class TestCharacter:
     @pytest.fixture
     def characters(self):
         random.seed(10_001)
-        return [Character('orc', skill=5, stamina=12),
-                Character('dragon', skill=8, stamina=15)]
+        return [Character('Orc', skill=5, stamina=12),
+                Character('Dragon', skill=8, stamina=15)]
 
     def test_characters(self, characters):
         orc, dragon = characters
@@ -38,7 +38,7 @@ class TestCharacter:
         assert orc.roll == 4
         assert dragon.roll == 5
         assert dragon.score == 13
-        assert result == 'lost'
+        assert result == 'loss..'
         assert orc.stamina == 10
         assert dragon.stamina == 15
 
@@ -58,12 +58,12 @@ class TestCharacter:
 
     def test_return_character_status(self, characters):
         orc = characters[0]
-        assert orc.return_character_status() == 'Orc has skill 5 and stamina 12'
+        assert orc.return_character_status() == 'Orc has 12 stamina(s) left and skill 5'
 
     def test_return_roll_status(self, characters):
         dragon = characters[1]
         dragon.find_score()
-        assert dragon.return_roll_status() == 'Dragon rolled 4 for a total score of 12'
+        assert dragon.return_rolls_status() == 'Dragon rolled 4 for a total score of 12'
 
 
 class TestPlayerCharacter:

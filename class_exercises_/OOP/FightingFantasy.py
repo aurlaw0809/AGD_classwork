@@ -17,6 +17,9 @@ class Character:
     def __repr__(self):
         return f"Character('{self.name}', skill={self.skill}, stamina={self.stamina})"
 
+    def __str__(self):
+        return f"{self.name}"
+
     def find_score(self):
         self.roll = dice_sum(2)
         self.score = self.roll + self.skill
@@ -119,3 +122,24 @@ class Game:
 
     def return_character_status(self):
         return f'{self.player.name} has {self.player.stamina} stamina(s) left and skill {self.player.skill}'
+
+    def return_round_result(self):
+        msg = f"{self.player.return_rolls_status()}" + "\n" + f"{self.opponent.return_rolls_status()}" + "\n"
+
+        if self.round_result == 'win!':
+            msg += "Player wins!\n"
+        elif self.round_result == 'loss..':
+            msg += "Player loses :(\n"
+        else:
+            msg += "This round was a draw...\n"
+
+        print(msg)
+
+'''
+game = Game()
+goose = PC.generate_player_character("Goose!!")
+game.set_player(goose)
+game.choose_opponent()
+game.resolve_fight_round()
+game.return_round_result()
+'''
