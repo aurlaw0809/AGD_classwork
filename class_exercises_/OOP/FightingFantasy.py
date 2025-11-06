@@ -72,18 +72,18 @@ class PC(Character):
         return cls(name, skill = dice_sum(2), stamina = dice_sum(2), luck = dice_sum(2))
 
     def __repr__(self):
-        return f"Character('{self.name}', skill={self.skill}, stamina={self.stamina}, luck={self.luck})"
+        return f"PlayerCharacter('{self.name}', skill={self.skill}, stamina={self.stamina}, luck={self.luck})"
 
     def test_luck(self):
         score = dice_sum(2)
         self.roll = score
 
-        if score > self.luck:
-            self.luck -= 1
-            return False
-        else:
+        if score <= self.luck:
             self.luck -= 1
             return True
+        else:
+            self.luck -= 1
+            return False
 
 zippa = PC.generate_player_character("Zippa :|")
 
