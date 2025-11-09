@@ -76,21 +76,23 @@ class GameCLI:
 
         #STARTS STORY -------------------------------------------------------------------
         #fights battles continuously until ready for boss fight or dead
+
         player_dead = False
 
         while pc.skill < 20 and not player_dead:
             player_dead = self.fight_opponent()
 
-        if player_dead:
-            print("-" * 100)
-            print()
-            print("GAME OVER *bzzt*\n")
-            self.game.player.return_stats()
+        #STARTS BOSS FIGHT -------------------------------------------------------------------
+        #starts boss fight if player hasn't died already
+
+        if not player_dead:
+            #boss fight
 
     def fight_opponent(self):
 
         #FIGHT OPPONENT -------------------------------------------------------------------
         #selects and opponent, displays statistics and runs fight_battle
+
         self.game.choose_opponent()
         print("As you trek through the forest, you hear a noise from behind you and" + "\n" +
               "draw your sword *shwing*. A dark figure emerges from the trees..." + "\n" +
@@ -137,6 +139,10 @@ class GameCLI:
             return False
 
     def opponent_dead(self):
+
+        #OPPONENT DEATH --------------------------------------------------------------------
+        #increases player's stats after opponent defeated
+
         print("-" * 100)
         print(f"\n{str(self.game.opponent.name).upper()} HAS BEEN DEFEATED!! HUZZAH!" + "\n" + "\n" +
               "In return for your bravery, you have gained +2 skill and +4 stamina." + "\n" +
@@ -148,10 +154,18 @@ class GameCLI:
         print("-" * 100)
 
     def player_dead(self):
+
+        #PLAYER DEATH --------------------------------------------------------------------
+        #player death sequence
+
         print("-" * 100)
         print(f"\n{self.game.player.name} has been defeated!" + "\n" + "\n" +
               "Traveller, despite your valiant effort, your quest comes to an end" + "\n" +
-              "here, thank you for aiding in the defence of Olfana...")
+              "here, thank you for aiding in the defence of Olfana..." + "\n")
+        print("-" * 100)
+        print()
+        print("GAME OVER *bzzt*\n")
+        self.game.player.return_stats()
 
 if __name__ == "__main__":
     GameCLI()
