@@ -162,7 +162,55 @@ class GameCLI:
               f"It also has a skill level of {self.game.opponent.skill}, higher than" + "\n" +
               "any of those you have faced before..." + "\n" + "\n"
               "PREPARE TO FACE THE WILD GOOSE, TRUE MASTERMIND OF THE NECROSOFIA!!" + "\n" + "\n")
-        print()
+
+        round_num = 0
+
+        while not self.game.player.is_dead and not self.game.opponent.is_dead:
+            round_num += 1
+
+            print("-" * 100)
+            print(f"\nROUND {round_num}\n")
+            choice = input(f"Would you like to fight a round against {self.game.opponent.name}? [y/n] ")
+
+            if choice.lower() != "y":
+                print("HAHA! Traveller, at this point, there is no point of return.." + "\n" +
+                      "THIS, is a battle... to the DEATH!" + "\n" +
+                      "*bum bum bummmm*" + "\n")
+
+            self.game.resolve_fight_round()
+            self.game.return_round_result()
+
+            if self.game.round_result() == "win":
+                print("The goose looks at you, and astounded look in its face.." + "\n" +
+                      "'revenge...', you hear it mutter under its breath." + "\n")
+            elif self.game.round_result() == "loss":
+                print("*SQUAWK HONK*" + "\n")
+            else:
+                print("'interesting... interesting...', the goose looks at you" + "\n" +
+                      "as it gauges your ability, cocking its neck to the side with" + "\n" +
+                      "what can only be described as a look of pure hostility." + "\n")
+
+        if self.game.opponent.is_dead:
+
+            print("-" * 100)
+            print()
+            print("'How.. could a human... a PATHETIC... SMALL... human.. ever harm me?'" + "\n" + "\n"
+                  "The goose stands in the fading sunlight, its eyes glossing over and its" + "\n"
+                  "body starting to go limp. As it crumbles to ash before you very eyes" + "\n"
+                  "you feel the pivot in the energy of the realm. The Necrosofia have been" + "\n"
+                  "defeated and your mission is complete!" + "\n" + "\n")
+
+        if self.game.player.is_dead:
+
+            print("-" * 100)
+            print()
+            print("Failing... on the final hurdle... a truly pathetic end to and effortful" + "\n" +
+                  "saga, all that for nought." + "\n" + "\n" +
+                  "Thank you for aiding in the defence of Olfana... or at least your best" + "\n"
+                  "effort to..." + "\n" + "\n"
+                  "The goose looks you in the eyes, its own with an apathetic look as it flies" + "\n" +
+                  "off into the distance..." + "\n" +
+                  "'humans..' " + "\n" + "\n")
 
     def opponent_dead(self):
 
@@ -189,12 +237,24 @@ class GameCLI:
               "Traveller, despite your valiant effort, your quest comes to an end" + "\n" +
               "here, thank you for aiding in the defence of Olfana..." + "\n"
               "*insert roblox death sound*" + "\n")
+
+    def game_fail(self):
+
         print("-" * 100)
         print()
         print("GAME OVER *bzzt*" + "\n" + "\n"
               "Finishing statistics are as follows..." + "\n")
         self.game.player.return_stats()
         print(f"Farwell {self.game.player.name}, we barely knew you..." + "\n")
+
+    def game_success(self):
+
+        print("-" * 100)
+        print()
+        print("GAME OVER *bzzt*" + "\n" + "\n"
+              "Finishing statistics are as follows..." + "\n")
+        self.game.player.return_stats()
+        print(f"CONGRATULATIONS {(self.game.player.name).upper()}, YOU HAVE SAVED OLFANA!!" + "\n")
 
 if __name__ == "__main__":
     GameCLI()
