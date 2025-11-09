@@ -200,6 +200,8 @@ class GameCLI:
                   "you feel the pivot in the energy of the realm. The Necrosofia have been" + "\n"
                   "defeated and your mission is complete!" + "\n" + "\n")
 
+            self.game_success()
+
         if self.game.player.is_dead:
 
             print("-" * 100)
@@ -211,6 +213,8 @@ class GameCLI:
                   "The goose looks you in the eyes, its own with an apathetic look as it flies" + "\n" +
                   "off into the distance..." + "\n" +
                   "'humans..' " + "\n" + "\n")
+
+            self.game_fail()
 
     def opponent_dead(self):
 
@@ -237,6 +241,8 @@ class GameCLI:
               "Traveller, despite your valiant effort, your quest comes to an end" + "\n" +
               "here, thank you for aiding in the defence of Olfana..." + "\n"
               "*insert roblox death sound*" + "\n")
+
+        self.game_fail()
 
     def game_fail(self):
 
