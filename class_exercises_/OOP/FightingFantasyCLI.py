@@ -50,7 +50,11 @@ class GameCLI:
         print("-" * 100)
         print(f"Good {pc.name}, thankest thou for embarking upon this mission! Thine" + "\n" +
               "statistics are as follows:\n")
-        print(pc) #TODO need to fix this
+        pc.return_stats()
+        print("\nTake care to remember that statistics can increase or decrease" + "\n" +
+              "during your mission. Fighting foes and losing will result in a" + "\n" +
+              "decrease in stamina, while fighting enemies can help to increase" + "\n" +
+              "your skill and prepare for the final battle!")
 
     def fight_opponent(self):
         pass
