@@ -260,7 +260,7 @@ class GameCLI:
         print("GAME OVER *bzzt*" + "\n" + "\n"
               "Finishing statistics are as follows..." + "\n")
         self.game.player.return_stats()
-        print(f"CONGRATULATIONS {(self.game.player.name).upper()}, YOU HAVE SAVED OLFANA!!" + "\n")
+        print(f"CONGRATULATIONS {self.game.player.name.upper()}, YOU HAVE SAVED OLFANA!!" + "\n")
 
 if __name__ == "__main__":
     GameCLI()
