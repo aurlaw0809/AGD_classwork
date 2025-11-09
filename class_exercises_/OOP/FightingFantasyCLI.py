@@ -14,12 +14,18 @@ In order to stop this plan, the King formed a group of br'''
 class GameCLI:
 
     def __init__(self):
+
+        #CREATING GAME ------------------------------------------------------------------------
+        #initialises variables and starts the game
+
         self.game = Game()
         self.run_game()
 
     def run_game(self):
 
-        # INTRO
+        #INTRO --------------------------------------------------------------------------------
+        #welcomes the player to the game and gives a brief background
+
         print("-" * 100)
         print("\nGREETINGS TRAVELLER, AND WELCOME TO OLFANA!!\n")
         print("-" * 100)
@@ -34,7 +40,9 @@ class GameCLI:
               "enact their fiendish limited edition plot and conquer Olfana as their own!\n")
         print("-" * 100)
 
-        # CREATING CHARACTER
+        #CREATING CHARACTER -------------------------------------------------------------------
+        #creates the character and returns statistics while giving some more background
+
         start = input("\nTraveller! Will you lead our campaign and decimate out enemies? [y/n] ")
 
         if start.lower() != "y":
@@ -50,23 +58,100 @@ class GameCLI:
         print("-" * 100)
         print(f"\nGood {pc.name}, thankest thou for embarking upon this mission! Thine" + "\n" +
               "statistics are as follows:\n")
-        pc.return_stats()
+        self.game.player.return_stats()
         print("\nTake care to remember that statistics can increase or decrease" + "\n" +
               "during your mission. Fighting foes and losing will result in a" + "\n" +
               "decrease in stamina, while winning battles can help to increase" + "\n" +
               "your skill and prepare for the final boss! Half finishing fights" + "\n" +
               "with monsters may decrease your stamina but will result in no" + "\n" +
-              "skill upgrades, keep this in mind when deciding to flee."+ "\n" + "\n" +
+              "skill upgrades, keep this in mind when deciding to flee. You will"+ "\n" +
+              "also not receive the chance to fight the same monster again, which" + "\n" +
+              "could result in a lower or insufficient skill level to fight the" "\n" +
+              "boss and possible catastrophy for Olfana." + "\n" + "\n" +
               "The final battle will be unlocked whenever your skill level passes" + "\n" +
               "the 20 point mark. Until then, you must prepare..." + "\n" + "\n" +
               f"Good luck {pc.name}!" + "\n")
         print("-" * 100)
+        print()
+
+        #STARTS STORY -------------------------------------------------------------------
+        #fights battles continuously until ready for boss fight or dead
+        player_dead = False
+
+        while pc.skill < 20 and not player_dead:
+            player_dead = self.fight_opponent()
+
+        if player_dead:
+            print("-" * 100)
+            print()
+            print("GAME OVER *bzzt*\n")
+            self.game.player.return_stats()
 
     def fight_opponent(self):
-        pass
+
+        #FIGHT OPPONENT -------------------------------------------------------------------
+        #selects and opponent, displays statistics and runs fight_battle
+        self.game.choose_opponent()
+        print("As you trek through the forest, you hear a noise from behind you and" + "\n" +
+              "draw your sword *shwing*. A dark figure emerges from the trees..." + "\n" +
+              f"... you have encountered {self.game.opponent.name}!\n")
+        self.game.opponent.return_stats()
+        print()
+
+        player_dead = self.fight_battle()
+        return player_dead
 
     def fight_battle(self):
-        pass
+
+        #FIGHT BATTLE --------------------------------------------------------------------
+        #fights opponent until one of the two dies or the player flees
+
+        flee = False
+        round_num = 0
+
+        while not flee and not self.game.opponent.is_dead and not self.game.player.is_dead:
+            round_num += 1
+
+            print("-" * 100)
+            print(f"\nROUND {round_num}\n")
+            choice = input(f"Would you like to fight a round against {self.game.opponent.name}? [y/n] ")
+            print()
+
+            if choice.lower() != "y":
+                flee = True
+                print("You flee, leaving your opponent behind. A cowardly but perhaps" + "\n" +
+                      "strategic move." + "\n" + "\n" +
+                      "'Till next time..', the foe mutters" + "\n"
+                      "*You know there won't be a next time*")
+            else:
+                self.game.resolve_fight_round()
+                self.game.return_round_result()
+
+        if self.game.opponent.is_dead:
+            self.opponent_dead()
+
+        if self.game.player.is_dead:
+            self.player_dead()
+            return True
+        else:
+            return False
+
+    def opponent_dead(self):
+        print("-" * 100)
+        print(f"\n{str(self.game.opponent.name).upper()} HAS BEEN DEFEATED!! HUZZAH!" + "\n" + "\n" +
+              "In return for your bravery, you have gained +2 skill and +4 stamina." + "\n" +
+              "Your new statistics are as follows..." + "\n")
+        self.game.player.skill += 2
+        self.game.player.stamina += 4
+        self.game.player.return_stats()
+        print()
+        print("-" * 100)
+
+    def player_dead(self):
+        print("-" * 100)
+        print(f"\n{self.game.player.name} has been defeated!" + "\n" + "\n" +
+              "Traveller, despite your valiant effort, your quest comes to an end" + "\n" +
+              "here, thank you for aiding in the defence of Olfana...")
 
 if __name__ == "__main__":
     GameCLI()

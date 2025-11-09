@@ -115,7 +115,7 @@ class Game:
         return creatures
 
     def load_boss(cls):
-        boss = Character("Wild goose", 12, 12)
+        boss = Character("Wild goose", 15, 12)
         return boss
 
     def __init__(self):
@@ -141,33 +141,14 @@ class Game:
         msg = f"{self.player.return_rolls_status()}" + "\n" + f"{self.opponent.return_rolls_status()}" + "\n"
 
         if self.round_result == 'win!':
-            msg += "Player wins!\n"
+            msg += "WIN!\n"
 
         elif self.round_result == 'loss..':
-            msg += "Player loses :(\n"
+            msg += "A loss.. your stamina decreases.\n"
         else:
             msg += "This round was a draw...\n"
 
         print(msg)
-
-        if self.opponent.is_dead:
-            self.opponent_dead()
-
-        if self.player.is_dead:
-            self.player_dead()
-
-    def opponent_dead(self):
-        print(f"\n{self.opponent.name} has been defeated!! HUZZAH!" + "\n" + "\n" +
-                "In return for your bravery, you have gained +1 skill and +4 stamina." + "\n" +
-                "Your new statistics are as follows..." + "\n")
-        self.player.skill += 1
-        self.player.stamina += 4
-        self.player.return_stats()
-
-    def player_dead(self):
-        print(f"\n{self.player.name} has been defeated!" + "\n" + "\n" +
-              "Traveller, despite your valiant effort, your quest comes to an end" + "\n" +
-              "here, thank you for aiding in the defence of Olfana...")
 
     def boss_fight(self):
         self.creatures = self.load_boss()
@@ -182,3 +163,6 @@ game.choose_opponent()
 game.resolve_fight_round()
 game.return_round_result()
 '''
+
+if __name__ == "__main__":
+    game = Game()
