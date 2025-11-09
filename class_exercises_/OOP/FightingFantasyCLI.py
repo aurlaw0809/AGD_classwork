@@ -21,9 +21,9 @@ class GameCLI:
 
         # INTRO
         print("-" * 100)
-        print("Greetings traveller and welcome to Olfana!!")
+        print("\nGREETINGS TRAVELLER, AND WELCOME TO OLFANA!!\n")
         print("-" * 100)
-        print("This here tale takes place in a magical land of curious creatures and" + "\n" +
+        print("\nThis here tale takes place in a magical land of curious creatures and" + "\n" +
               "fantastical fables called Olfana! A land in a world unlike our own!!!" + "\n" +
               "(No. This is not plagarism...)" + "\n" + "\n" +
               "The people of Olfana are frightened by the threat of a growing group" + "\n" +
@@ -31,30 +31,36 @@ class GameCLI:
               "species in the realm. Necrosofia possess numerous mysterious powers yet" + "\n" +
               "undisclosed to the public and to be discovered and destroyed during" + "\n" +
               "battle, perhaps even claimed as your own. With these, they intend to " + "\n" +
-              "enact their fiendish limited edition plot and conquer Olfana as their own!")
+              "enact their fiendish limited edition plot and conquer Olfana as their own!\n")
         print("-" * 100)
 
         # CREATING CHARACTER
-        start = input("Traveller! Will you lead our campaign and decimate out enemies? [y/n] ")
+        start = input("\nTraveller! Will you lead our campaign and decimate out enemies? [y/n] ")
 
         if start.lower() != "y":
-            print()
-            print("Traveller, unfortunately you have no choice! As you have been anointed" + "\n" +
+            print("\nTraveller, unfortunately you have no choice! As you have been anointed" + "\n" +
                   "by the king, it is your regal duty and honor to agree, or face cruel" + "\n" +
-                  "punishment and dishonor the sword itself.")
-            print()
+                  "punishment and dishonor the sword itself.\n")
 
         name = input("Proclaim your title for this quest: ")
+        print()
         pc = PC.generate_player_character(name)
+        self.game.set_player(pc)
 
         print("-" * 100)
-        print(f"Good {pc.name}, thankest thou for embarking upon this mission! Thine" + "\n" +
+        print(f"\nGood {pc.name}, thankest thou for embarking upon this mission! Thine" + "\n" +
               "statistics are as follows:\n")
         pc.return_stats()
         print("\nTake care to remember that statistics can increase or decrease" + "\n" +
               "during your mission. Fighting foes and losing will result in a" + "\n" +
-              "decrease in stamina, while fighting enemies can help to increase" + "\n" +
-              "your skill and prepare for the final battle!")
+              "decrease in stamina, while winning battles can help to increase" + "\n" +
+              "your skill and prepare for the final boss! Half finishing fights" + "\n" +
+              "with monsters may decrease your stamina but will result in no" + "\n" +
+              "skill upgrades, keep this in mind when deciding to flee."+ "\n" + "\n" +
+              "The final battle will be unlocked whenever your skill level passes" + "\n" +
+              "the 20 point mark. Until then, you must prepare..." + "\n" + "\n" +
+              f"Good luck {pc.name}!" + "\n")
+        print("-" * 100)
 
     def fight_opponent(self):
         pass

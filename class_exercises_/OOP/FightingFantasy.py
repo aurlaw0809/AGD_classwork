@@ -158,8 +158,10 @@ class Game:
 
     def opponent_dead(self):
         print(f"\n{self.opponent.name} has been defeated!! HUZZAH!" + "\n" + "\n" +
-                "In return for your bravery, you have gained +1 skill and +2 stamina." + "\n" +
+                "In return for your bravery, you have gained +1 skill and +4 stamina." + "\n" +
                 "Your new statistics are as follows..." + "\n")
+        self.player.skill += 1
+        self.player.stamina += 4
         self.player.return_stats()
 
     def player_dead(self):
