@@ -38,14 +38,14 @@ class Character:
 
         if self.score > other.score:
             other.take_hit()
-            return 'win!'
+            return 'win'
         elif self.score < other.score:
             self.take_hit()
-            return 'loss..'
+            return 'loss'
         else:
             self.take_hit(1)
             other.take_hit(1)
-            return 'draw..?'
+            return 'draw'
 
     def return_character_status(self):
         return f'{self.name} has {self.stamina} stamina(s) left and skill {self.skill}'
@@ -101,21 +101,22 @@ zippa = PC.generate_player_character("Zippa :|")
 class Game:
     @classmethod
     def load_creatures(cls):
-        creatures = [Character("Snek", 3, 5),
-                     Character("Box Fish", 5, 3),
+        creatures = [Character("a Snek", 3, 5),
+                     Character("a Box Fish", 5, 3),
                      Character("Leonardo DaVinci", 8, 4),
                      Character("Dragon", 8, 12),
                      Character("Jackie", 10, 7),
-                     Character("Coin man", 12, 4),
+                     Character("Coin man *cha ching*", 12, 4),
                      Character("Sir Tom", 6, 4),
                      Character("Batman", 10, 9),
-                     Character("Batsman", 11, 10),
-                     Character("Meghahn", 5, 5)
+                     Character("Batsman *insert confused noises*", 11, 10),
+                     Character("Meghahn", 5, 5),
+                     Character("a wild Nendou", 4, 13),
                      ]
         return creatures
 
     def load_boss(cls):
-        boss = Character("Wild goose", 15, 12)
+        boss = Character("a Wild goose", 15, 12)
         return boss
 
     def __init__(self):
@@ -140,11 +141,11 @@ class Game:
     def return_round_result(self):
         msg = f"{self.player.return_rolls_status()}" + "\n" + f"{self.opponent.return_rolls_status()}" + "\n"
 
-        if self.round_result == 'win!':
+        if self.round_result == 'win':
             msg += "WIN!\n"
 
-        elif self.round_result == 'loss..':
-            msg += "A loss.. your stamina decreases.\n"
+        elif self.round_result == 'loss':
+            msg += f"A loss.. your stamina decreases to {self.player.stamina}.\n"
         else:
             msg += "This round was a draw...\n"
 
