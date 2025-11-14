@@ -5,7 +5,7 @@ class MainFrame(tk.Frame):
         super().__init__(master)
 
         self.txt = tk.Label(self,
-                            text="Olfana!",
+                            text="RAHHHHHHH!",
                             bg="green yellow",
                             fg="sea green")
 
@@ -29,35 +29,35 @@ class MainFrame(tk.Frame):
         self.place_widgets()
 
     def place_widgets(self):
+        settings = {'padx': 10, 'pady': 10, 'sticky': 'nswe'}
+
         self.txt.grid(row = 0,
                       column = 0,
-                      padx=10,
-                      pady=10,
-                      sticky="NEWS"
+                      **settings
                       )
         self.btn.grid(row = 0,
                       column = 1,
-                      padx=10,
-                      pady=10,
-                      sticky="NEWS"
+                      **settings
                       )
         self.edt.grid(row = 1,
                       column = 0,
-                      padx=10,
-                      pady=10,
-                      sticky="NEWS"
+                      **settings
                       )
         self.sld.grid(row = 1,
                       column = 1,
-                      padx=10,
-                      pady=10,
-                      sticky="NEWS"
+                      **settings
                       )
+
+        self.columnconfigure(0, weight=2)
+        self.columnconfigure(1, weight=1)
+        self.rowconfigure(0, weight=1)
+        self.rowconfigure(1, weight=4)
 
 
 if __name__ == '__main__':
     root = tk.Tk()
-    root.title("Olfana!!.gov.uk")
+    root.title("Not a Scam!!.gov.uk")
+    root.geometry('500x500+100+100')
 
     main_frame = MainFrame(root)
     main_frame.pack(fill=tk.BOTH, expand=True)
