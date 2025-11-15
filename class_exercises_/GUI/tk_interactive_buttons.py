@@ -1,6 +1,6 @@
 import tkinter as tk
 
-#from class_exercises_.GUI.tkinter_examples import MainFrame
+from class_exercises_.GUI.tkinter_examples import MainFrame
 
 
 class ClickApp(tk.Tk):
