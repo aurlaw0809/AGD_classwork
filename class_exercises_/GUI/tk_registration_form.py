@@ -11,10 +11,12 @@ class RegistrationForm(tk.Tk):
         self.registration_frame = RegistrationFormFrame(self)
         self.gender_choice_frame = GenderChoiceFrame(self)
         self.entry_box_frame = EntryBoxFrame(self)
+        self.country_choice_frame = CountryChoiceFrame(self)
 
-        self.registration_frame.pack(row=0, column=0)
+        self.registration_frame.grid(row=0, column=0)
         self.entry_box_frame.grid(row=0, column=1)
         self.gender_choice_frame.grid(row=1, column=1)
+        self.country_choice_frame.grid(row=2, column=1)
 
 #registration left side labels
 class RegistrationFormFrame(tk.Frame):
@@ -56,6 +58,7 @@ class RegistrationFormFrame(tk.Frame):
         self.programming_label.grid(row=4,
                                     column=0,
                                     **settings)
+
 #email and name entry buttons
 class EntryBoxFrame(tk.Frame):
     def __init__(self, master):
@@ -85,7 +88,7 @@ class GenderChoiceFrame(tk.Frame):
         # Gender choices
         self.options = ['Male', 'Female']
 
-        # Create a tk variable which will hold the value of the selcted gender
+        # Create a tk variable which will hold the value of the selected gender
         self.gender_choice = tk.StringVar()
         self.gender_choice.set(self.options[0])
 
@@ -103,6 +106,25 @@ class GenderChoiceFrame(tk.Frame):
         for item in self.gender_options:
             item.pack(side=tk.LEFT, anchor='w', padx=(5, 10), pady=5)
 
+#country choice button
+class CountryChoiceFrame(tk.Frame):
+    def __init__(self, master):
+        super().__init__(master)
+
+        self.current_country = tk.StringVar()
+        self.combobox = ttk.Combobox(self, textvariable=self.current_country)
+
+        self.combobox['values'] = ('United Kingdom', 'UK', 'England', 'Ireland', 'Northern Ireland', 'Wales',
+                                           'Scotland', 'Britain')
+        self.combobox['state'] = 'readonly'
+
+        self.current_value = self.combobox.get()
+
+        self.place_widgets()
+
+    def place_widgets(self):
+        self.combobox.grid(row=0, column=0)
+    #
 if __name__ == '__main__':
 
     registration_form = RegistrationForm()
