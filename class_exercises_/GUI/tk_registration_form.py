@@ -16,17 +16,17 @@ class RegistrationForm(tk.Tk):
         self.rowconfigure(2, weight=0)
 
         self.top_frame = tk.Frame(self)
-        self.top_frame.grid(row=0, column=0, columnspan=2, sticky="nw")
+        self.top_frame.grid(row=0, column=0, columnspan=2, sticky="w")
 
         self.bottom_frame = tk.Frame(self)
-        self.bottom_frame.grid(row=1, column=0, sticky="nw")
+        self.bottom_frame.grid(row=1, column=0, columnspan=2, sticky="nw")
 
-        self.bottom_frame.right_frame = tk.Frame(self)
-        self.bottom_frame.right_frame.grid(row=1, column=1, sticky="nw", padx=10, pady=5)
+        self.bottom_frame.right_frame = tk.Frame(self.bottom_frame)
+        self.bottom_frame.right_frame.grid(row=0, column=1, sticky="nw", padx=10, pady=5)
         self.bottom_frame.right_frame.columnconfigure(0, weight=1)
 
-        self.bottom_frame.left_frame = tk.Frame(self)
-        self.bottom_frame.left_frame.grid(row=1, column=0, sticky="nw", padx=10, pady=5)
+        self.bottom_frame.left_frame = tk.Frame(self.bottom_frame)
+        self.bottom_frame.left_frame.grid(row=0, column=0, sticky="nw", padx=10, pady=5)
         self.bottom_frame.left_frame.columnconfigure(0, weight=1)
 
         #create left side
@@ -46,10 +46,10 @@ class RegistrationForm(tk.Tk):
         self.programming_choice_frame = ProgramingChoiceFrame(self.bottom_frame.right_frame)
 
         #position right side
-        self.entry_box_frame.grid(row=0, column=0, sticky="nw")
-        self.gender_choice_frame.grid(row=1, column=0, sticky="nw")
-        self.country_choice_frame.grid(row=2, column=0, sticky="nw")
-        self.programming_choice_frame.grid(row=3, column=0, sticky="nw")
+        self.entry_box_frame.grid(row=0, column=0, sticky="nw", pady=(5, 0))
+        self.gender_choice_frame.grid(row=2, column=0, sticky="nw", pady=(5, 0))
+        self.country_choice_frame.grid(row=3, column=0, sticky="nw", pady=(5, 0))
+        self.programming_choice_frame.grid(row=4, column=0, sticky="nw", pady=(5, 0))
 
 
 class RegistrationFormFrameTitle(tk.Frame):
@@ -60,7 +60,7 @@ class RegistrationFormFrameTitle(tk.Frame):
                               text="Registration Form",
                               justify="left",
                               anchor="w",
-                              font=("Arial", 28))
+                              font=("Arial", 24))
 
         self.place_widgets()
 
@@ -84,7 +84,7 @@ class RegistrationFormFrame(tk.Frame):
         self.place_widgets()
 
     def place_widgets(self):
-        settings = {'padx': 10, 'pady': 10, 'sticky':"w"}
+        settings = {'padx': 10, 'pady': 9, 'sticky':"w"}
 
         self.name_label.grid(row=0,
                              column=0,
@@ -217,5 +217,5 @@ class SubmitBoxFrame(tk.Frame):
 if __name__ == '__main__':
 
     registration_form = RegistrationForm()
-    registration_form.geometry('500x500+100+100')
+    registration_form.geometry('550x330+100+100')
     registration_form.mainloop()
