@@ -14,8 +14,8 @@ class ClickApp(tk.Tk):
         self.clicker_frame = ButtonClicker(self)
         self.background_color_frame = BackgroundColorFrame(self)
 
-        self.clicker_frame.pack(side=tk.LEFT)
-        self.background_color_frame.pack(side=tk.LEFT)
+        self.clicker_frame.grid(row=0, column=0, sticky=tk.NSEW)
+        self.background_color_frame.grid(row=0, column=1, sticky=tk.NSEW)
 
 
 class ButtonClicker(tk.Frame):
@@ -71,8 +71,6 @@ class ButtonClicker(tk.Frame):
                       **settings
                       )
 
-
-
         self.columnconfigure(0, weight=2)
         self.rowconfigure(0, weight=1)
         self.rowconfigure(1, weight=4)
@@ -84,7 +82,7 @@ class BackgroundColorFrame(tk.Frame):
         super().__init__(master)
 
         # Color choices
-        self.colors = ['red bean paste', 'lime green', 'blellow']
+        self.colors = ['green yellow', 'sea green', 'medium sea green', 'dark olive green']
 
         # Create a tk variable which will hold the value of the selcted color
         self.selected_color = tk.StringVar()
@@ -94,15 +92,28 @@ class BackgroundColorFrame(tk.Frame):
         self.radio_options = [tk.Radiobutton(self, text=color,
                                              value=color,
                                              variable=self.selected_color,
-                                             #command=self.change_color
+                                             command=self.change_color,
+                                             bg=color,
+                                             fg="lemon chiffon",
+                                             activebackground="lemon chiffon",
+                                             activeforeground=color,
                                              )
                               for color in self.colors]
 
         self.place_widgets()
+        self.config(bg="green yellow")
+
+    def change_color(self):
+        self.master.config(bg=self.selected_color.get())
+        self.config(bg=self.selected_color.get())
 
     def place_widgets(self):
         for ro in self.radio_options:
-            ro.pack(side=tk.TOP, anchor='w', padx=(5, 10), pady=5)
+            ro.pack(side=tk.TOP,
+                    anchor='w',
+                    padx=(5, 10),
+                    pady=5,
+                    )
 
 
 if __name__ == '__main__':
