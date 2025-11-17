@@ -84,7 +84,7 @@ class RegistrationFormFrame(tk.Frame):
         self.place_widgets()
 
     def place_widgets(self):
-        settings = {'padx': 10, 'pady': 9, 'sticky':"w"}
+        settings = {'padx': 10, 'pady': 7, 'sticky':"w"}
 
         self.name_label.grid(row=0,
                              column=0,
