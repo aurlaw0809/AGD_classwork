@@ -74,20 +74,68 @@ class TempTitleFrame(tk.Frame):
         super().__init__(master)
         self.config(bg="lemon chiffon")
 
+        self.txt = tk.Label(self,
+                            text="SELECT TEMP",
+                            font=("Arial", 20))
+
+        self.txt.grid(row=0, column=0, columnspan=4, rowspan=1, sticky='nsew')
+
 class SelectTempFrame(tk.Frame):
     def __init__(self, master):
         super().__init__(master)
         self.config(bg="medium turquoise")
+
+        self.plus = tk.Button(self,
+                             text = "+",
+                             font=("Arial", 24))
+
+        self.minus = tk.Button(self,
+                               text = "-",
+                               font=("Arial", 24))
+
+        self.entry = tk.Entry(self,
+                              font=("Arial", 18))
+
+        self.plus.grid(row=0, column=0, columnspan=1, rowspan=1, sticky='nsew')
+        self.minus.grid(row=0, column=1, columnspan=1, rowspan=1, sticky='nsew')
+        self.entry.grid(row=0, column=2, columnspan=2, rowspan=1, sticky='nsew')
 
 class UnitTitleFrame(tk.Frame):
     def __init__(self, master):
         super().__init__(master)
         self.config(bg="lemon chiffon")
 
+        self.txt = tk.Label(self,
+                            text="SELECT UNIT",
+                            font=("Arial", 20))
+
+        self.txt.grid(row=0, column=0, columnspan=4, rowspan=1, sticky='nsew')
+
 class SelectUnitFrame(tk.Frame):
     def __init__(self, master):
         super().__init__(master)
         self.config(bg="medium turquoise")
+
+        self.options = ['C', 'F', 'K', '?']
+
+        # Create a tk variable which will hold the value of the selected unit
+        self.unit_choice = tk.StringVar()
+        self.unit_choice.set(self.options[0])
+
+        # Create radio buttons (list comprehension)
+        self.unit_options = [tk.Radiobutton(self, text=unit,
+                                              value=unit,
+                                              variable=self.unit_choice,
+                                              )
+                               for unit in self.options]
+
+        self.place_widgets()
+
+    def place_widgets(self):
+        i = 0
+        for item in self.unit_options:
+            item.grid(row=0, column=i, columnspan=1, rowspan=1, sticky='nsew')
+            i += 1
 
 class CelsiusFrame(tk.Frame):
     def __init__(self, master):
