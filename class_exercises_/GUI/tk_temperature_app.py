@@ -142,20 +142,66 @@ class CelsiusFrame(tk.Frame):
         super().__init__(master)
         self.config(bg="lemon chiffon")
 
+        self.txt = tk.Label(self,
+                            text="C",
+                            font=("Arial", 20))
+
+        self.temp = tk.Label(self,
+                             text=0,
+                             font=("Arial", 20))
+
+        self.txt.grid(row=0, column=0, columnspan=1, rowspan=1, sticky='nsew')
+        self.temp.grid(row=1, column=0, columnspan=1, rowspan=1, sticky='nsew')
+
 class FahrenheitFrame(tk.Frame):
     def __init__(self, master):
         super().__init__(master)
         self.config(bg="medium turquoise")
+
+        self.txt = tk.Label(self,
+                            text="F",
+                            font=("Arial", 20))
+
+        self.temp = tk.Label(self,
+                             text=0,
+                             font=("Arial", 20))
+
+        self.txt.grid(row=0, column=0, columnspan=1, rowspan=1, sticky='nsew')
+        self.temp.grid(row=1, column=0, columnspan=1, rowspan=1, sticky='nsew')
 
 class KelvinFrame(tk.Frame):
     def __init__(self, master):
         super().__init__(master)
         self.config(bg="lemon chiffon")
 
+        self.txt = tk.Label(self,
+                            text="K",
+                            font=("Arial", 20))
+
+        self.temp = tk.Label(self,
+                             text=0,
+                             font=("Arial", 20))
+
+        self.txt.grid(row=0, column=0, columnspan=1, rowspan=1, sticky='nsew')
+        self.temp.grid(row=1, column=0, columnspan=1, rowspan=1, sticky='nsew')
+
 class BackgroundFrame(tk.Frame):
     def __init__(self, master):
         super().__init__(master)
         self.config(bg="medium turquoise")
+
+        self.txt = tk.Label(self,
+                            text="FEELS LIKE",
+                            font=("Arial", 20))
+
+        self.sld = tk.Scale(self,
+                            from_=0,
+                            to=100,
+                            orient=tk.HORIZONTAL,
+                            )
+
+        self.txt.grid(row=0, column=0, columnspan=3, rowspan=1, sticky='nsew')
+        self.sld.grid(row=1, column=0, columnspan=3, rowspan=1, sticky='nsew')
 
 if __name__ == '__main__':
     app = TemperatureApp()
