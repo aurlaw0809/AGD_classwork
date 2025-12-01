@@ -7,7 +7,9 @@ class TemperatureApp(tk.Tk):
     def __init__(self):
        super().__init__()
 
-       #TODO self.bind(<Return>, lambda _: self.go_frame.btn.invoke(self))
+       self.color = tk.StringVar()
+
+       self.bind('<Return>', lambda _: self.go_frame.btn.invoke())
 
        #main blocking frames
        self.title("Temperature Convertor App!")
@@ -43,7 +45,6 @@ class TemperatureApp(tk.Tk):
        self.kelvin_frame.grid(row=2, column=6, columnspan=1, rowspan=2, sticky='nsew')
 
        self.background_frame.grid(row=4, column=4, columnspan=3, rowspan=2, sticky='nsew')
-       #end thing cause weird spacing
 
 class TitleFrame(tk.Frame):
     def __init__(self, master):
@@ -68,6 +69,7 @@ class GoFrame(tk.Frame):
                              command = self.convert)
 
         self.btn.grid(row=0, column=0, columnspan=2, rowspan=2, sticky='nsew', padx=10, pady=10)
+        #self.btn.winfo_geometry()
 
     def convert(self):
         current_temp = self.master.select_temp_frame.entry.get()
@@ -80,7 +82,6 @@ class GoFrame(tk.Frame):
         else:
             temp=Temperature(celsius=int(current_temp))
 
-        print(current_temp, current_unit)
         self.master.celsius_frame.current_temp.set(f'{temp.celsius:.1f}')
         self.master.fahrenheit_frame.current_temp.set(f'{temp.fahrenheit:.1f}')
         self.master.kelvin_frame.current_temp.set(f'{temp.kelvin:.1f}')
@@ -216,8 +217,6 @@ class BackgroundFrame(tk.Frame):
     def __init__(self, master):
         super().__init__(master)
         self.config(bg="medium turquoise")
-        self.current_vibe = tk.StringVar()
-        print(self.current_vibe)
 
         self.txt = tk.Label(self,
                             text="FEELS LIKE",
@@ -225,14 +224,20 @@ class BackgroundFrame(tk.Frame):
 
         self.sld = tk.Scale(self,
                             from_=0,
-                            to=100,
+                            to=16777215,
                             orient=tk.HORIZONTAL,
-                            )
-
-        self.current_vibe.set(self.sld.get())
+                            sliderlength=40,
+                            command=self.on_change)
 
         self.txt.grid(row=0, column=0, columnspan=3, rowspan=1, sticky='nsew', padx=10, pady=10)
         self.sld.grid(row=1, column=0, columnspan=3, rowspan=1, sticky='nsew', padx=10, pady=10)
+
+    def on_change(self, value):
+        hex_bg = hex(int(value))[2:].upper()
+        while len(hex_bg) < 6:
+            hex_bg += '0'
+        hex_bg = '#' + hex_bg
+        self.master.config(bg=hex_bg)
 
 if __name__ == '__main__':
     app = TemperatureApp()
