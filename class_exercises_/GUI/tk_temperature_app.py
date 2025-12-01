@@ -52,9 +52,10 @@ class TitleFrame(tk.Frame):
 
         self.txt = tk.Label(self,
                             text="TEMPERATURE CONVERTOR",
-                            font=("Arial", 24))
+                            font=("Arial", 24),
+                            justify='center')
 
-        self.txt.grid(row=0, column=0, columnspan=5, rowspan=2, sticky='nsew')
+        self.txt.grid(row=0, column=0, columnspan=5, rowspan=2, sticky='nsew', padx=30, pady=10)
 
 class GoFrame(tk.Frame):
     def __init__(self, master):
@@ -66,7 +67,7 @@ class GoFrame(tk.Frame):
                              font=("Arial", 24),
                              command = self.convert)
 
-        self.btn.grid(row=0, column=0, columnspan=2, rowspan=2, sticky='nsew')
+        self.btn.grid(row=0, column=0, columnspan=2, rowspan=2, sticky='nsew', padx=10, pady=10)
 
     def convert(self):
         current_temp = self.master.select_temp_frame.entry.get()
@@ -93,7 +94,7 @@ class TempTitleFrame(tk.Frame):
                             text="SELECT TEMP",
                             font=("Arial", 20))
 
-        self.txt.grid(row=0, column=0, columnspan=4, rowspan=1, sticky='nsew')
+        self.txt.grid(row=0, column=0, columnspan=4, rowspan=1, sticky='nsew', padx=10, pady=10)
 
 class SelectTempFrame(tk.Frame):
     def __init__(self, master):
@@ -111,9 +112,9 @@ class SelectTempFrame(tk.Frame):
         self.entry = tk.Entry(self,
                               font=("Arial", 18))
 
-        self.plus.grid(row=0, column=0, columnspan=1, rowspan=1, sticky='nsew')
-        self.minus.grid(row=0, column=1, columnspan=1, rowspan=1, sticky='nsew')
-        self.entry.grid(row=0, column=2, columnspan=2, rowspan=1, sticky='nsew')
+        self.plus.grid(row=0, column=0, columnspan=1, rowspan=1, sticky='nsew', padx=10, pady=10)
+        self.minus.grid(row=0, column=1, columnspan=1, rowspan=1, sticky='nsew', padx=10, pady=10)
+        self.entry.grid(row=0, column=2, columnspan=2, rowspan=1, sticky='nsew', padx=10, pady=10)
 
         #TODO make minus and plus buttons work
 
@@ -126,7 +127,7 @@ class UnitTitleFrame(tk.Frame):
                             text="SELECT UNIT",
                             font=("Arial", 20))
 
-        self.txt.grid(row=0, column=0, columnspan=4, rowspan=1, sticky='nsew')
+        self.txt.grid(row=0, column=0, columnspan=4, rowspan=1, sticky='nsew', padx=10, pady=10)
 
 class SelectUnitFrame(tk.Frame):
     def __init__(self, master):
@@ -143,6 +144,7 @@ class SelectUnitFrame(tk.Frame):
         self.unit_options = [tk.Radiobutton(self, text=unit,
                                               value=unit,
                                               variable=self.unit_choice,
+                                              font=("Arial", 20),
                                               )
                                for unit in self.options]
 
@@ -151,7 +153,7 @@ class SelectUnitFrame(tk.Frame):
     def place_widgets(self):
         i = 0
         for item in self.unit_options:
-            item.grid(row=0, column=i, columnspan=1, rowspan=1, sticky='nsew')
+            item.grid(row=0, column=i, columnspan=1, rowspan=1, sticky='nsew', padx=40, pady=10)
             i += 1
 
 class CelsiusFrame(tk.Frame):
@@ -170,8 +172,8 @@ class CelsiusFrame(tk.Frame):
                              font=("Arial", 20))
 
 
-        self.txt.grid(row=0, column=0, columnspan=1, rowspan=1, sticky='nsew')
-        self.temp.grid(row=1, column=0, columnspan=1, rowspan=1, sticky='nsew')
+        self.txt.grid(row=0, column=0, columnspan=1, rowspan=1, sticky='nsew', padx=10, pady=10)
+        self.temp.grid(row=1, column=0, columnspan=1, rowspan=1, sticky='nsew', padx=10, pady=10)
 
 
 class FahrenheitFrame(tk.Frame):
@@ -189,8 +191,8 @@ class FahrenheitFrame(tk.Frame):
                              textvariable=self.current_temp,
                              font=("Arial", 20))
 
-        self.txt.grid(row=0, column=0, columnspan=1, rowspan=1, sticky='nsew')
-        self.temp.grid(row=1, column=0, columnspan=1, rowspan=1, sticky='nsew')
+        self.txt.grid(row=0, column=0, columnspan=1, rowspan=1, sticky='nsew', padx=10, pady=10)
+        self.temp.grid(row=1, column=0, columnspan=1, rowspan=1, sticky='nsew', padx=10, pady=10)
 
 class KelvinFrame(tk.Frame):
     def __init__(self, master):
@@ -207,13 +209,15 @@ class KelvinFrame(tk.Frame):
                              textvariable=self.current_temp,
                              font=("Arial", 20))
 
-        self.txt.grid(row=0, column=0, columnspan=1, rowspan=1, sticky='nsew')
-        self.temp.grid(row=1, column=0, columnspan=1, rowspan=1, sticky='nsew')
+        self.txt.grid(row=0, column=0, columnspan=1, rowspan=1, sticky='nsew', padx=10, pady=10)
+        self.temp.grid(row=1, column=0, columnspan=1, rowspan=1, sticky='nsew', padx=10, pady=10)
 
 class BackgroundFrame(tk.Frame):
     def __init__(self, master):
         super().__init__(master)
         self.config(bg="medium turquoise")
+        self.current_vibe = tk.StringVar()
+        print(self.current_vibe)
 
         self.txt = tk.Label(self,
                             text="FEELS LIKE",
@@ -225,8 +229,10 @@ class BackgroundFrame(tk.Frame):
                             orient=tk.HORIZONTAL,
                             )
 
-        self.txt.grid(row=0, column=0, columnspan=3, rowspan=1, sticky='nsew')
-        self.sld.grid(row=1, column=0, columnspan=3, rowspan=1, sticky='nsew')
+        self.current_vibe.set(self.sld.get())
+
+        self.txt.grid(row=0, column=0, columnspan=3, rowspan=1, sticky='nsew', padx=10, pady=10)
+        self.sld.grid(row=1, column=0, columnspan=3, rowspan=1, sticky='nsew', padx=10, pady=10)
 
 if __name__ == '__main__':
     app = TemperatureApp()
