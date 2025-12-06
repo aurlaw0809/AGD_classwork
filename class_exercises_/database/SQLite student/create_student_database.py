@@ -16,3 +16,5 @@ create_students_table = '''
 #execute the command
 cursor.execute(create_students_table)
 conn.close()
+
+#howdy

@@ -70,3 +70,5 @@ if test(text) == text:
     correct += 1
 else:
     total += 1
+
+    # howdy

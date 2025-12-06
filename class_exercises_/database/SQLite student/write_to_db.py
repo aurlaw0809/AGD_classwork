@@ -27,6 +27,8 @@ cursor.executemany(paramterised_insert_query, student_data)
 conn.commit()
 conn.close()
 
+#howdy
+
 
 
 
