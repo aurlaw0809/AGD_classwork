@@ -41,8 +41,23 @@ for item in cities:
 cities_total = [[city, cities.count(city)] for city in seen]
 cities_total = sorted(cities_total, key=lambda x: x[1], reverse=True)
 
+#inserts media into media_types table
+"""
+query4 = '''INSERT INTO media_types (MediaTypeID, Name)
+            VALUES (6, "Windows Media Audio"),
+            (7, "FLAC audio file");'''
+cursor.execute(query4)
+"""
+#the quotations are there so i don't run it multiple times and create duplicates
+
+#creates a list of the employees reporting to Nancy Edwards , her ID is 2
+
+query5 = '''SELECT LastName, FirstName FROM employees
+            WHERE ReportsTo = 2;'''
+
+cursor.execute(query5)
+reportsto = cursor.fetchall()
+
 
 conn.commit()
 conn.close()
-
-#[2:-3]
