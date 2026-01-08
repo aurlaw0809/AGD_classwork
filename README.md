@@ -4,6 +4,8 @@
 - Test driven development(TDD)
 - Comprehensions
 - Object orientated programming
+- TKinter
+- Databases
 
 # yippee
 ## yippee
