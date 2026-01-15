@@ -53,7 +53,7 @@ paramterised_insert_query4 = """
     INSERT INTO likes (user_id, post_id)
     VALUES (?, ?);"""
 
-#cursor.executemany(paramterised_insert_query1, user_data)
+cursor.executemany(paramterised_insert_query1, user_data)
 cursor.executemany(paramterised_insert_query2, posts_data)
 cursor.executemany(paramterised_insert_query3, comments_data)
 cursor.executemany(paramterised_insert_query4, likes_data)
