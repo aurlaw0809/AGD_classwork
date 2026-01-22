@@ -1,6 +1,8 @@
 from typing import Optional
 import sqlalchemy as sa
 import sqlalchemy.orm as so
+from sqlalchemy import ForeignKey
+
 
 # Base is called an Abstract Base Class - our SQL Alchemy models will inherit from this class
 class Base(so.DeclarativeBase):
@@ -17,6 +19,7 @@ person_activities = sa.Table('person_activities',
                            sa.Column('person_id', sa.ForeignKey('persons.id')),
                            sa.UniqueConstraint('activity_id', 'person_id')
                            )
+
 
 # Sets up an Activity table, this references "attendees" via the person_activities table.
 # Note that we use the 'new' SQLalchemy 2.0 method of creating columns mapped to python object attributes
@@ -54,4 +57,3 @@ class Person(Base):
     # Include a method:
     def greeting(self) -> None:
         print(f'{self.first_name} says "hello"!')
-
