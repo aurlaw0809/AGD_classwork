@@ -47,8 +47,22 @@ class CLI:
         activity_id = input('Enter activity ID: ')
         self.controller.delete_activity(activity_id)
 
-    def edit_person(self):
-        pass
+    def edit_person_name(self):
+        first_name = input('Enter first name: ')
+        last_name = input('Enter last name: ')
+        new_first_name = input('Enter new first name: ')
+        new_last_name = input('Enter new last name: ')
+        self.controller.edit_person(first_name, last_name, new_first_name, new_last_name)
+
+    def delete_person_activity(self):
+        person_id = input('Enter person ID: ')
+        activity_id = input('Enter activity ID: ')
+        self.controller.delete_person_activity(person_id, activity_id)
+
+    def add_person_activity(self):
+        person_id = input('Enter person ID: ')
+        activity_id = input('Enter activity ID: ')
+        self.controller.add_person_activity(person_id, activity_id)
 
     def edit_activity(self):
         pass
