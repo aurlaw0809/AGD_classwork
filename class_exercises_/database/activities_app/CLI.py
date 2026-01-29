@@ -52,20 +52,23 @@ class CLI:
         last_name = input('Enter last name: ')
         new_first_name = input('Enter new first name: ')
         new_last_name = input('Enter new last name: ')
-        self.controller.edit_person(first_name, last_name, new_first_name, new_last_name)
+        self.controller.edit_person_name(first_name, last_name, new_first_name, new_last_name)
 
+    def edit_activity_name(self):
+        activity_id = input('Enter activity ID: ')
+        activity_name = input('Enter new activity name: ')
+        self.controller.edit_activity_name(activity_id, activity_name)
+    '''
     def delete_person_activity(self):
         person_id = input('Enter person ID: ')
         activity_id = input('Enter activity ID: ')
         self.controller.delete_person_activity(person_id, activity_id)
-
+    '''
     def add_person_activity(self):
         person_id = input('Enter person ID: ')
         activity_id = input('Enter activity ID: ')
         self.controller.add_person_activity(person_id, activity_id)
 
-    def edit_activity(self):
-        pass
 
 
 if __name__ == '__main__':
