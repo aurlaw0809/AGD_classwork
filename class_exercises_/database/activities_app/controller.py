@@ -25,7 +25,7 @@ class Controller:
 
     def get_all_people(self):
         with so.Session(bind=self.engine) as session:
-            stmt = session.get(Person)
+            stmt = session.get(Person, persons)
             people = []
             for thing in session.execute(stmt):
                 people.append({thing.first_name, thing.last_name})
