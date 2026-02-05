@@ -25,6 +25,11 @@ class User(Base):
     gender: Mapped[Optional[str]]
     nationality: Mapped[Optional[str]]
 
+    posts: Mapped[list['Post']] = relationship(
+        back_populates='user',
+        cascade='all, delete-orphan',
+    )
+
     liked_posts: Mapped[list['Post']] = relationship(
         secondary=likes_table,
         back_populates = 'liked_by_users',
