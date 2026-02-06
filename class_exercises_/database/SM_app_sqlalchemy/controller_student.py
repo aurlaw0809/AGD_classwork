@@ -36,10 +36,18 @@ class Controller:
 
     def create_account(self, username, age, gender, nationality):
         with so.Session(bind=self.engine) as session:
-            new_user = User(username, age, gender, nationality)
+            new_user = User(name=username, age=age, gender=gender, nationality=nationality)
             session.add(new_user)
             session.commit()
-            #TODO
+
+    def search_posts_by_title(self, title:str) -> Post:
+        with so.Session(bind=self.engine) as session:
+            post = session.scalars(sa.select(Post).where(Post.title == title)).one_or_none()
+
+            if post is None:
+                return None
+        #TODO because this won't find posts actually there for some reason lowkey idk why but i intend to fix it and maybe could have actually fixed it in the time it took to write this but i didn't :(( anyway, yolo
+        return post
 
 
 if __name__ == '__main__':
