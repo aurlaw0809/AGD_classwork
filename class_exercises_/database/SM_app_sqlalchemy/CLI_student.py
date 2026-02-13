@@ -80,7 +80,7 @@ class CLI:
         elif menu_choice.lower() == 'search':
             next_menu = self.search
         elif menu_choice.lower() == 'view posts':
-            next_menu = self.view_posts
+            next_menu = self.view_posts_plural
         elif menu_choice.lower() == 'my account':
             next_menu = self.my_account
         elif menu_choice.lower() == 'new':
@@ -133,25 +133,50 @@ class CLI:
 
         title = input('Enter title: ')
         post = self.controller.search_posts_by_title(title)
-        print(post)
         if post is None:
             print('No such post')
-            next_menu = self.search_posts
         else:
             self.view_post(post)
-        return self.search_posts()
+        next_menu = self.search_posts
+        return next_menu
 
     def search_posts_by_desc(self):
         self.show_title(f'Search Posts by Description')
-        return self.search_posts()
+
+        description = input('Enter description: ')
+        post = self.controller.search_posts_by_description(description)
+        if post is None:
+            print('No such post')
+        else:
+            self.view_post(post)
+        next_menu = self.search_posts
+        return next_menu
 
     def search_users(self):
-        return self.search()
+        self.show_title(f'Search Users')
+
+        username = input('Enter username: ')
+        user = self.controller.search_users(username)
+        if user is None:
+            print('No such user')
+        else:
+            self.view_user(user)
+        next_menu = self.search
+        return next_menu
 
     def search_comments(self):
-        return self.search()
+        self.show_title(f'Search Comments')
 
-    def view_posts(self):
+        comment = input('Enter comment: ')
+        the_comment = self.controller.search_comments(comment)
+        if the_comment is None:
+            print('No such comment')
+        else:
+            self.view_comment(the_comment)
+        next_menu = self.search
+        return next_menu
+
+    def view_posts_plural(self):
         return self.user_home()
 
     def my_account(self):
@@ -161,7 +186,24 @@ class CLI:
         return self.user_home()
 
     def view_post(self, post):
-        print('youd view a post here if id done it already')
+        self.show_title(f'View post - {post.title}')
+        print(f'Author: {self.controller.get_user_name(post.user_id)}')
+        print(f'Likes: {post.number_of_likes()}')
+        print(f'Description: {post.description}')
+        print('\nComments:')
+        for comment in post.comments:
+            self.view_comment(comment)
+        pass
+
+    def view_user(self, user):
+        print('you view a user here if id done it already')
+        pass
+
+    def view_comment(self, comment):
+        self.show_title(f'View comment')
+        print(f'{comment.comment}')
+        print(f'Author: {self.controller.get_user_name(comment.user_id)}')
+        print(f'Post: {comment.post}')
         pass
 
 

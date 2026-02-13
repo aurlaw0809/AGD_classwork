@@ -1,5 +1,6 @@
 import sqlalchemy as sa
 import sqlalchemy.orm as so
+from sqlalchemy.orm import Mapped
 
 from class_exercises_.database.SM_app_sqlalchemy.models import User, Post, Comment
 
@@ -22,7 +23,7 @@ class Controller:
             self.current_user_id = user.id
         return user
 
-    def get_user_name(self, user_id: int|None = None) -> 'str':
+    def get_user_name(self, user_id: int|None = None) -> Mapped[str]:
         if user_id is None:
             user_id = self.current_user_id
         with so.Session(bind=self.engine) as session:
@@ -43,13 +44,24 @@ class Controller:
     def search_posts_by_title(self, title:str) -> Post:
         with so.Session(bind=self.engine) as session:
             post = session.scalars(sa.select(Post).where(Post.title == title)).one_or_none()
-
-            if post is None:
-                return None
-        #TODO because this won't find posts actually there for some reason lowkey idk why but i intend to fix it and maybe could have actually fixed it in the time it took to write this but i didn't :(( anyway, yolo
         return post
 
+    def search_posts_by_description(self, desc: str) -> Post:
+        with so.Session(bind=self.engine) as session:
+            post = session.scalars(sa.select(Post).where(Post.description == desc)).one_or_none()
+        return post
 
+    def search_users(self, username: str) -> Post:
+        with so.Session(bind=self.engine) as session:
+            user = session.scalars(sa.select(Post).where(User.name == username)).one_or_none()
+        return user
+
+    def search_comments(self, comment: str) -> Post:
+        with so.Session(bind=self.engine) as session:
+            the_comment = session.scalars(sa.select(Comment).where(Comment.comment == comment)).one_or_none()
+        return the_comment
+
+#TODO move view posts and other stuff to here so they actually work
 if __name__ == '__main__':
     controller = Controller()
     controller.set_current_user_from_name('Alice')
