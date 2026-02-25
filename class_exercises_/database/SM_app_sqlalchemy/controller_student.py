@@ -88,6 +88,11 @@ class Controller:
             user = session.scalars(sa.select(User).where(User.id == user_id)).one_or_none()
             return user.number_of_posts_liked()
 
+    def get_post_name(self, post_id):
+        with so.Session(bind=self.engine) as session:
+            post = session.scalars(sa.select(Post).where(Post.id == post_id)).one_or_none()
+            return post.title
+
     def view_post(self, post):
         print(f'View post - {post.title}')
         print(f'Author: {self.get_user_name(post.user_id)}')
@@ -100,7 +105,7 @@ class Controller:
         print(f'View comment')
         print(f'{comment.comment}')
         print(f'Author: {self.get_user_name(comment.user_id)}')
-        print(f'Post: {comment.post}')
+        print(f'Post: {self.get_post_name(comment.post_id)}')
 
     def view_user(self, user):
         print(f'View user - {user.name}')
