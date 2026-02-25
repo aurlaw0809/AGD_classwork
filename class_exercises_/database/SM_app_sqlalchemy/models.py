@@ -40,6 +40,15 @@ class User(Base):
         cascade='all, delete-orphan',
     )
 
+    def number_of_posts(self) -> int:
+        return len(self.posts)
+
+    def number_of_posts_liked(self) -> int:
+        return len(self.liked_posts)
+
+    def number_of_comments(self) -> int:
+        return len(self.comments_made)
+
     def __repr__(self):
         return f"User(name='{self.name}', age={self.age}, gender={self.gender}, nationality={self.nationality})"
 

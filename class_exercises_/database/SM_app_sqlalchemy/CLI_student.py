@@ -136,7 +136,7 @@ class CLI:
         if post is None:
             print('No such post')
         else:
-            self.view_post(post)
+            self.controller.view_post(post)
         next_menu = self.search_posts
         return next_menu
 
@@ -148,7 +148,7 @@ class CLI:
         if post is None:
             print('No such post')
         else:
-            self.view_post(post)
+            self.controller.view_post(post)
         next_menu = self.search_posts
         return next_menu
 
@@ -160,7 +160,7 @@ class CLI:
         if user is None:
             print('No such user')
         else:
-            self.view_user(user)
+            self.controller.view_user(user)
         next_menu = self.search
         return next_menu
 
@@ -172,7 +172,7 @@ class CLI:
         if the_comment is None:
             print('No such comment')
         else:
-            self.view_comment(the_comment)
+            self.controller.view_comment(the_comment)
         next_menu = self.search
         return next_menu
 
@@ -185,26 +185,6 @@ class CLI:
     def new(self):
         return self.user_home()
 
-    def view_post(self, post):
-        self.show_title(f'View post - {post.title}')
-        print(f'Author: {self.controller.get_user_name(post.user_id)}')
-        print(f'Likes: {post.number_of_likes()}')
-        print(f'Description: {post.description}')
-        print('\nComments:')
-        for comment in post.comments:
-            self.view_comment(comment)
-        pass
-
-    def view_user(self, user):
-        print('you view a user here if id done it already')
-        pass
-
-    def view_comment(self, comment):
-        self.show_title(f'View comment')
-        print(f'{comment.comment}')
-        print(f'Author: {self.controller.get_user_name(comment.user_id)}')
-        print(f'Post: {comment.post}')
-        pass
 
 
 if __name__ == '__main__':
