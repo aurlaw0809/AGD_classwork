@@ -116,7 +116,7 @@ class Controller:
         print(f'NO. comments: {self.find_no_user_comments(user.id)}')
         print(f'NO. likes made: {self.find_no_user_liked_posts(user.id)}')
 
-#TODO move view posts and other stuff to here so they actually work
+#TODO view user
 if __name__ == '__main__':
     controller = Controller()
     controller.set_current_user_from_name('Alice')
