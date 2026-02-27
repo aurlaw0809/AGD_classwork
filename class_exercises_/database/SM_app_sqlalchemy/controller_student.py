@@ -2,6 +2,7 @@ import sqlalchemy as sa
 import sqlalchemy.orm as so
 from sqlalchemy.orm import Mapped
 import pyinputplus as pyip
+import random
 
 from class_exercises_.database.SM_app_sqlalchemy.models import User, Post, Comment
 
@@ -52,9 +53,9 @@ class Controller:
             post = session.scalars(sa.select(Post).where(Post.description == desc)).one_or_none()
         return post
 
-    def search_users(self, username: str) -> Post:
+    def search_users(self, username: str) -> User:
         with so.Session(bind=self.engine) as session:
-            user = session.scalars(sa.select(Post).where(User.name == username)).one_or_none()
+            user = session.scalars(sa.select(User).where(User.name == username)).one_or_none()
         return user
 
     def search_comments(self, comment):
@@ -92,6 +93,19 @@ class Controller:
         with so.Session(bind=self.engine) as session:
             post = session.scalars(sa.select(Post).where(Post.id == post_id)).one_or_none()
             return post.title
+
+    def find_newest_post(self):
+        with so.Session(bind=self.engine) as session:
+            max = len(session.scalars(sa.select(Post).order_by(Post.title)).all())
+            post = session.scalars(sa.select(Post).where(Post.id == max)).one_or_none()
+            return post
+
+    def find_random_post(self):
+        with so.Session(bind=self.engine) as session:
+            max = len(session.scalars(sa.select(Post).order_by(Post.title)).all())
+            num = random.randint(1, max)
+            post = session.scalars(sa.select(Post).where(Post.id == num)).one_or_none()
+            return post
 
     def view_post(self, post):
         print(f'View post - {post.title}')

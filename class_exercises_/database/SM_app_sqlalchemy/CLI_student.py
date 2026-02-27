@@ -177,7 +177,43 @@ class CLI:
         return next_menu
 
     def view_posts_plural(self):
-        return self.user_home()
+        self.show_title(f'View posts')
+        menu_items = ['View newest',
+                      'View random',
+                      'Search',
+                      'Exit',
+                      ]
+        menu_choice = pyip.inputMenu(menu_items,
+                                     prompt='Select a menu\n',
+                                     numbered=True,
+                                     )
+        if menu_choice.lower() == 'view newest':
+            next_menu = self.newest_post
+        elif menu_choice.lower() == 'view random':
+            next_menu = self.view_random_post
+        elif menu_choice.lower() == 'search':
+            next_menu = self.search_posts
+        else:
+            next_menu = self.user_home
+        return next_menu
+
+    def newest_post(self):
+        post = self.controller.find_newest_post()
+        if post is None:
+            print('No such post')
+        else:
+            self.controller.view_post(post)
+        next_menu = self.view_posts_plural()
+        return next_menu
+
+    def view_random_post(self):
+        post = self.controller.find_random_post()
+        if post is None:
+            print('No such post')
+        else:
+            self.controller.view_post(post)
+        next_menu = self.view_posts_plural()
+        return next_menu
 
     def my_account(self):
         return self.user_home()
