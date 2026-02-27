@@ -59,7 +59,18 @@ class GameObj:
         self.pos = pos
         self.solid = solid
 
+    def __repr__(self):
+        return (f'name: {self.name}, pos: {self.pos}, solid: {self.solid}')
+
+    def is_solid(self):
+        return self.solid
+
 class CharacterObj(GameObj):
     def __init__(self, controller, name):
         super().__init__(controller, name)
+
+    def find_next_location(self, direction):
+        if direction == 'W':
+            return (self.pos[0], self.pos[1]+1)
+        #TODO ts is not done
 
