@@ -32,6 +32,13 @@ class Controller:
             name = session.get(User, user_id).name
         return name
 
+    def get_user(self, user_id: int|None = None) -> User:
+        with so.Session(bind=self.engine) as session:
+            if user_id is None:
+                user_id = self.current_user_id
+            user = session.scalars(sa.select(User).where(User.id == user_id)).one_or_none()
+        return user
+
     def get_user_names(self) -> list[str]:
         with so.Session(bind=self.engine) as session:
             user_names = session.scalars(sa.select(User.name).order_by(User.name)).all()

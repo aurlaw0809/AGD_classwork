@@ -216,12 +216,17 @@ class CLI:
         return next_menu
 
     def my_account(self):
-        return self.user_home()
+        user = self.controller.get_user()
+        self.controller.view_user(user)
+
+        next_menu = self.user_home
+        return next_menu
 
     def new(self):
+        self.show_title(f'New Post')
         return self.user_home()
 
-
+#TODO add comments and likes functionality so its accessible when you view a post, finish new post section
 
 if __name__ == '__main__':
     cli = CLI()
