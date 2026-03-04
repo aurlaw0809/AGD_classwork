@@ -224,9 +224,12 @@ class CLI:
 
     def new(self):
         self.show_title(f'New Post')
-        return self.user_home()
 
-#TODO add comments and likes functionality so its accessible when you view a post, finish new post section
+        title = input('Enter title: ')
+        description = input('Enter description: ')
+
+        self.controller.add_new_post(title, description)
+        return self.user_home()
 
 if __name__ == '__main__':
     cli = CLI()

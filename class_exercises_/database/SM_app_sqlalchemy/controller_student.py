@@ -114,6 +114,26 @@ class Controller:
             post = session.scalars(sa.select(Post).where(Post.id == num)).one_or_none()
             return post
 
+    def add_new_post(self, title, description):
+        with so.Session(bind=self.engine) as session:
+            post = (Post(title=title, description=description, user_id = self.current_user_id))
+            session.add(post)
+            session.commit()
+
+    def add_new_comment(self, post_id):
+        text = input("Enter your comment: ")
+        with so.Session(bind=self.engine) as session:
+            comment = (Comment(comment=text, user_id=self.current_user_id, post_id=post_id))
+            session.add(comment)
+            session.commit()
+
+    def add_new_like(self, post_id):
+        with so.Session(bind=self.engine) as session:
+            user = session.scalars(sa.select(User).where(User.id == self.current_user_id)).one_or_none()
+            post = session.scalars(sa.select(Post).where(Post.id == post_id)).one_or_none()
+            post.liked_by_users.append(user)
+            session.commit()
+
     def view_post(self, post):
         print(f'View post - {post.title}')
         print(f'Author: {self.get_user_name(post.user_id)}')
@@ -121,6 +141,14 @@ class Controller:
         print(f'Description: {post.description}')
         print('Comments:')
         print(f'{self.find_comments(post.id)}')
+
+        comment = input('Comment [y/n]: ')
+        if comment.lower() == 'y':
+            self.add_new_comment(post.id)
+
+        like = input('Like [y/n]: ')
+        if like.lower() == 'y':
+            self.add_new_like(post.id)
 
     def view_comment(self, comment):
         print(f'View comment')
