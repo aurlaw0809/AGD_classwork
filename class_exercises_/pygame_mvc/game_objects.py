@@ -39,8 +39,13 @@ class Game:
                 contents.append(thing)
         return contents
 
-    def move_character(self, character, pos):
-        pass
+    def move_character(self, character, direction):
+        mv = False
+        new_pos = character.find_next_location(direction)
+        if not self.check_collisions(new_pos):
+            character.move(direction)
+            mv = True
+        return mv
 
     def find_objects_by_name(self, name):
         objects = []
@@ -50,17 +55,31 @@ class Game:
         return objects
 
     def show_game_grid(self):
-        pass
+        rows = self.dimensions[1]
+        cols = self.dimensions[0]
 
+        grid = [['' for y in range(cols)] for x in range(rows)]
+
+        for thing in self.backgrounds:
+            grid[thing.pos[1]][thing.pos[0]] = thing.name
+        for thing in self.characters:
+            grid[thing.pos[1]][thing.pos[0]] = thing.name
+        grid[self._start[1]][self._start[0]] = 'S'
+        grid[self._end[1]][self._end[0]] = 'E'
+
+        for row in range(rows):
+            for col in range(cols):
+                print(grid[row][col])
 
 class GameObj:
     def __init__(self, controller, name, pos, solid):
         self.name = name
         self.pos = pos
         self.solid = solid
+        self.controller = controller
 
     def __repr__(self):
-        return (f'name: {self.name}, pos: {self.pos}, solid: {self.solid}')
+        return f'name: {self.name}, pos: {self.pos}, solid: {self.solid}'
 
     def is_solid(self):
         return self.solid
@@ -71,6 +90,15 @@ class CharacterObj(GameObj):
 
     def find_next_location(self, direction):
         if direction == 'W':
-            return (self.pos[0], self.pos[1]+1)
-        #TODO ts is not done
+            return self.pos[0], self.pos[1] + 1
+        elif direction == 'A':
+            return self.pos[0]-1, self.pos[1]
+        elif direction == 'S':
+            return self.pos[0]+1, self.pos[1]
+        elif direction == 'D':
+            return self.pos[0], self.pos[1]-1
+        return None
+
+    def move(self, direction):
+        self.pos = self.find_next_location(direction)
 
