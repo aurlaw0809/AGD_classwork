@@ -101,4 +101,3 @@ class CharacterObj(GameObj):
 
     def move(self, direction):
         self.pos = self.find_next_location(direction)
-
