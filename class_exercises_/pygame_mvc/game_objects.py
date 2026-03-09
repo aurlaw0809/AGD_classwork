@@ -1,5 +1,5 @@
 class Game:
-    def __init__(self, controller):
+    def __init__(self):
         self.characters = []
         self.backgrounds = []
         self.dimensions = (0, 0)
@@ -16,11 +16,18 @@ class Game:
 
     def set_background_from_file(self, filename):
         with open(filename, 'r') as f:
-            objects = f.readlines()
-            for thing in objects:
+            y = 0
+            for thing in f.readlines():
                 thing = thing.strip()
-                name, pos, solid = thing.split(',')
-                self.add_background_object(name, pos, solid)
+                x = 0
+                for character in thing.split(','):
+                    solid = False
+                    if character == 'W':
+                        solid = True
+                    self.backgrounds.append(GameObj(self, character, (x, y), solid))
+                    x += 1
+                y += 1
+
 
     def check_collisions(self, pos):
         for thing in self.backgrounds:
@@ -68,8 +75,10 @@ class Game:
         grid[self._end[1]][self._end[0]] = 'E'
 
         for row in range(rows):
+            thisrow = []
             for col in range(cols):
-                print(grid[row][col])
+                thisrow.append(grid[row][col])
+            print(''.join(thisrow))
 
 class GameObj:
     def __init__(self, controller, name, pos, solid):
@@ -101,3 +110,10 @@ class CharacterObj(GameObj):
 
     def move(self, direction):
         self.pos = self.find_next_location(direction)
+
+'''
+game = Game()
+game.set_up((12, 12), (0, 5), (11, 10))
+game.set_background_from_file('mazemap.txt')
+game.show_game_grid()
+'''
