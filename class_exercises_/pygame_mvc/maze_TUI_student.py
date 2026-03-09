@@ -1,14 +1,21 @@
-#from class_exercises_.pygame_mvc.game_controller import Game
+from class_exercises_.pygame_mvc.game_controller import Game
 
 
 class TextInterface:
     """ Create a text-based interface for the turn-based game."""
     def __init__(self):
         self.game = Game()
-        self.game.set_up()
+        self.game.set_up((12, 12), (0, 5), (11, 10))
+        self.game.set_background_from_file('mazemap.txt')
+        self.player = self.game.characters[0]
         self.player = self.game.characters[0]
         self.game_area = []
         self.running = True
+
+    def _create_character(self):
+        """here we're gping to collect the datazzz for making a character, AKA the name dun dun dunnnn kapow sploosh bachow zompee kew pew kew pew pew pew"""
+        pass
+
 
     def _create_area(self):
         """ Create a list of lists where each [row][col] in self.game_area is given the first letter of the background or character in that grid location. If there is no background or character in a grid location, use the default '.'"""
@@ -29,7 +36,7 @@ class TextInterface:
 
     def main_loop(self):
         """Keep drawing the area and asking for player moves while self.runnng is True."""
-        print("Welcome to Andrew's Game")
+        print("Welcome to the Goblin King's Labyrinth")
         while self.running:
             self._draw_area()
             self._handle_input()

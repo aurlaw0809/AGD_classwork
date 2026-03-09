@@ -3,3 +3,4 @@ numpy
 matplot
 faker
 sqlalchemy
+pygame-ce
