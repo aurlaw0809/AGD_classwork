@@ -49,7 +49,9 @@ class GameGUI:
         """ Convert a grid position in the game to an (x, y) coordinate
                 if centre is false the position returned is top-left and if center is true
                 the position returned is the centre """
-        ...
+        x = pos[0] * SQUARE_SIZE
+        y = pos[1] * SQUARE_SIZE
+        return x, y
 
     def main_loop(self):
         while self.running:
@@ -78,12 +80,17 @@ class GameGUI:
 
     def _draw(self):
         """draw background first then characters"""
+        self._draw_background()
+        self._draw_characters()
         ...
         pygame.display.flip()
 
     def _draw_background(self):
         """Loop through all the game backgrounds and draw a rectangle of the appropriate colour"""
         self.screen.fill(BACKGROUND_COLORS['Floor'])
+        for thing in self.game.backgrounds:
+            print('yo')
+            #something
         ...
 
     def _draw_characters(self):
