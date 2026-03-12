@@ -17,13 +17,13 @@ class CharacterObj(GameObj):
 
     def find_next_location(self, direction):
         if direction == 'W':
-            return self.pos[0], self.pos[1] + 1
+            return self.pos[0], self.pos[1] - 1
         elif direction == 'A':
             return self.pos[0]-1, self.pos[1]
         elif direction == 'S':
-            return self.pos[0]+1, self.pos[1]
+            return self.pos[0], self.pos[1] + 1
         elif direction == 'D':
-            return self.pos[0], self.pos[1]-1
+            return self.pos[0]+1, self.pos[1]
         return None
 
     def move(self, direction):

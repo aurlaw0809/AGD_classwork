@@ -25,7 +25,7 @@ class Game:
                 x = 0
                 for character in thing.split(','):
                     solid = False
-                    if character == 'W':
+                    if character.strip() == 'W':
                         solid = True
                     self.backgrounds.append(GameObj(self, character, (x, y), solid))
                     x += 1
