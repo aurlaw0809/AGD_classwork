@@ -21,10 +21,10 @@ BACKGROUND_COLORS = {'W': (120, 176, 69),
 PLAYER_COLOR = (173, 39, 36)
 
 class GameGUI:
-    key_moves = {K_UP: 'n',
-                 K_DOWN: 's',
-                 K_RIGHT: 'e',
-                 K_LEFT: 'w',
+    key_moves = {K_UP: 'W',
+                 K_DOWN: 'S',
+                 K_RIGHT: 'A',
+                 K_LEFT: 'D',
                  }
 
     def __init__(self):
@@ -70,16 +70,17 @@ class GameGUI:
                     event.type == KEYDOWN and event.key == K_ESCAPE):
                 self.running = False
 
-            if event.key == K_LEFT:
-                self.move_direction = 'A'
-            elif event.key == K_RIGHT:
-                self.move_direction = 'D'
-            elif event.key == K_UP:
-                self.move_direction = 'W'
-            elif event.key == K_DOWN:
-                self.move_direction = 'S'
-            else:
-                self.move_direction = None
+            if event.type == KEYDOWN and self.running:
+                if event.key == K_LEFT:
+                    self.move_direction = 'A'
+                elif event.key == K_RIGHT:
+                    self.move_direction = 'D'
+                elif event.key == K_UP:
+                    self.move_direction = 'W'
+                elif event.key == K_DOWN:
+                    self.move_direction = 'S'
+                else:
+                    self.move_direction = None
 
             # Checks for movement keys amd sets self.move_direction according to the key pressed.
             # Otherwise, set self.move_direction to None
@@ -88,14 +89,8 @@ class GameGUI:
     def _process_game_logic(self):
         """ Implements character moves and checks if player has reached the exit """
         if self.running and self.move_direction is not None:
-            if self.move_direction == 'A':
-                self.game.move_character('A')
-            elif self.move_direction == 'D':
-                self.game.move_character('D')
-            elif self.move_direction == 'W':
-                self.game.move_character('W')
-            elif self.move_direction == 'S':
-                self.game.move_character('S')
+            self.game.move_character(self.player, self.move_direction)
+            self.move_direction = None
 
         ...
 
