@@ -5,13 +5,13 @@ class Game:
         self.characters = []
         self.backgrounds = []
         self.dimensions = (0, 0)
-        self._start = (0, 0)
-        self._end = (0, 0)
+        self.start = (0, 0)
+        self.end = (0, 0)
 
     def set_up(self, dimensions, start, end):
         self.dimensions = dimensions
-        self._start = start
-        self._end = end
+        self.start = start
+        self.end = end
         self.characters.append(CharacterObj(self,'Tom', (0, 5), True))
 
     def add_background_object(self, name, pos, solid):
@@ -39,7 +39,7 @@ class Game:
                     return True
                 else:
                     return False
-        return None
+        return True
     #true = there IS a collision
 
     def get_cell_contents(self, pos):
@@ -72,8 +72,8 @@ class Game:
 
         for thing in self.backgrounds:
             grid[thing.pos[1]][thing.pos[0]] = thing.name
-        grid[self._start[1]][self._start[0]] = 'S'
-        grid[self._end[1]][self._end[0]] = ' E'
+        grid[self.start[1]][self.start[0]] = 'S'
+        grid[self.end[1]][self.end[0]] = ' E'
         for thing in self.characters:
             grid[thing.pos[1]][thing.pos[0]] = thing.name[0]
 

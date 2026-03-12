@@ -92,6 +92,9 @@ class GameGUI:
             self.game.move_character(self.player, self.move_direction)
             self.move_direction = None
 
+        if self.player.pos == self.game.end:
+            self.running = False
+
         ...
 
     def _draw(self):
