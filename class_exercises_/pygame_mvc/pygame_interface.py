@@ -43,6 +43,11 @@ class GameGUI:
         self.screen = pygame.display.set_mode([self.game.dimensions[1] * SQUARE_SIZE,
                                                self.game.dimensions[0] * SQUARE_SIZE])
         self.running = True
+        self.exit_found = False
+
+        self.player_image = pygame.image.load('tom.png').convert_alpha()
+        self.player_image = pygame.transform.scale(self.player_image, (SQUARE_SIZE, SQUARE_SIZE))
+        self.player_rect = self.player_image.get_rect()
 
     @staticmethod
     def _convert_position(pos, center: bool = False) -> tuple[int, int]:
@@ -94,6 +99,7 @@ class GameGUI:
 
         if self.player.pos == self.game.end:
             self.running = False
+            self.exit_found = True
 
         ...
 
@@ -110,16 +116,16 @@ class GameGUI:
         for thing in self.game.backgrounds:
             position = self._convert_position(thing.pos)
             colour = BACKGROUND_COLORS[thing.name.strip()]
-            pygame.draw.rect(self.screen, colour, (position[0], position[1], SQUARE_SIZE, SQUARE_SIZE), 1)
+            pygame.draw.rect(self.screen, colour, (position[0], position[1], SQUARE_SIZE, SQUARE_SIZE), 0)
             #something
         ...
 
     def _draw_characters(self):
         """Loop through the characters and draw a circle for each character"""
         for character in self.game.characters:
-            position = self._convert_position(character.pos)
-            colour = PLAYER_COLOR
-            pygame.draw.circle(self.screen, colour, (position[0]+SQUARE_SIZE/2, position[1]+SQUARE_SIZE/2), SQUARE_SIZE/2, 0)
+            position = self._convert_position(character.pos, True)
+            self.player_rect.center = (position[0]+SQUARE_SIZE/2, position[1]+SQUARE_SIZE/2)
+            self.screen.blit(self.player_image, self.player_rect)
         ...
 
 if __name__ == "__main__":
