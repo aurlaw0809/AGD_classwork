@@ -1,12 +1,16 @@
 import pygame
+from pygame import Vector2
 
+from meteor_models import Spaceship
 from meteor_images import load_sprite
 
 class SpaceRocks:
     def __init__(self):
         self._init_pygame()
         self.screen = pygame.display.set_mode((800, 600))
-        self.background = load_sprite("fishh", False)
+        self.background = load_sprite("space", False)
+        self.clock = pygame.time.Clock()
+        self.spaceship = Spaceship((400, 300))
 
     def main_loop(self):
         while True:
@@ -25,9 +29,20 @@ class SpaceRocks:
             ):
                 quit()
 
+        is_key_pressed = pygame.key.get_pressed()
+
+        if is_key_pressed[pygame.K_RIGHT]:
+            self.spaceship.rotate(clockwise=True)
+        elif is_key_pressed[pygame.K_LEFT]:
+            self.spaceship.rotate(clockwise=False)
+        if is_key_pressed[pygame.K_UP]:
+            self.spaceship.accelerate()
+
     def _process_game_logic(self):
-        pass
+        self.spaceship.move(self.screen)
 
     def _draw(self):
         self.screen.blit(self.background, (0, 0))
+        self.spaceship.draw(self.screen)
         pygame.display.flip()
+        self.clock.tick(60)
