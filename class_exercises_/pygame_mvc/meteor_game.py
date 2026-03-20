@@ -1,16 +1,31 @@
 import pygame
 from pygame import Vector2
 
-from meteor_models import Spaceship
-from meteor_images import load_sprite
+from meteor_models import Spaceship, Asteroid
+from meteor_images import load_sprite, get_random_position
 
 class SpaceRocks:
+    MIN_ASTEROID_DISTANCE = 250
+
     def __init__(self):
         self._init_pygame()
         self.screen = pygame.display.set_mode((800, 600))
         self.background = load_sprite("space", False)
         self.clock = pygame.time.Clock()
+
+        self.asteroids = []
         self.spaceship = Spaceship((400, 300))
+
+        for _ in range(6):
+            while True:
+                position = get_random_position(self.screen)
+                if (
+                        position.distance_to(self.spaceship.position)
+                        > self.MIN_ASTEROID_DISTANCE
+                ):
+                    break
+
+            self.asteroids.append(Asteroid(position))
 
     def main_loop(self):
         while True:
@@ -39,10 +54,23 @@ class SpaceRocks:
             self.spaceship.accelerate()
 
     def _process_game_logic(self):
-        self.spaceship.move(self.screen)
+        for game_object in self._get_game_objects():
+            game_object.move(self.screen)
+
+        if self.spaceship:
+            for asteroid in self.asteroids:
+                if asteroid.collides_with(self.spaceship):
+                    self.spaceship = None
+                    break
 
     def _draw(self):
         self.screen.blit(self.background, (0, 0))
-        self.spaceship.draw(self.screen)
+
+        for game_object in self._get_game_objects():
+            game_object.draw(self.screen)
+
         pygame.display.flip()
         self.clock.tick(60)
+
+    def _get_game_objects(self):
+        return [*self.asteroids, self.spaceship]
